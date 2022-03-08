@@ -40,5 +40,4 @@ public class CategoryController {
         Iterable<Category> categories = categoryService.findAll();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
-
 }
