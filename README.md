@@ -16,12 +16,11 @@ different degree of access throughout the application.
 ###  E/R diagram
 ![ER Diagram](src/main/resources/image/ERdiagram.png)
 
+---
 
 ### Done [Live features]
 
 * CRUD functionality for all current entities
-
----
 
 ### Planned features
 
