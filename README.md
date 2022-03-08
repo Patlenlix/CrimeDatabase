@@ -10,7 +10,7 @@
 ---
 
 A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles have
-a different degree of accessibility through the application.
+different degree of access throughout the application.
 
 ### Done [Live features]
 
