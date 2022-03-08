@@ -1,3 +1,4 @@
+
 # CrimeDatabase
 
 ![repo_size](https://img.shields.io/github/repo-size/Patlenlix/CrimeDatabase)
@@ -12,11 +13,14 @@
 A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles have
 different degree of access throughout the application.
 
+###  E/R diagram
+![ER Diagram](src/main/resources/image/ERdiagram.png)
+
+---
+
 ### Done [Live features]
 
 * CRUD functionality for all current entities
-
----
 
 ### Planned features
 
@@ -43,3 +47,4 @@ different degree of access throughout the application.
 ```
 http://localhost:8080
 ```
+
