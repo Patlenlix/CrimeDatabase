@@ -3,12 +3,7 @@
 
 ![repo_size](https://img.shields.io/github/repo-size/Patlenlix/CrimeDatabase)
 
-
----
-
 ## Java Enterprise | ITHS | JU21
-
----
 
 A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles have
 different degree of access throughout the application.
