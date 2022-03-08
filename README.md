@@ -9,7 +9,7 @@
 
 ---
 
-A SpringBoot application handling crimes, criminals and victims which is stored in a MySQL database. Diverse roles have
+A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles have
 a different degree of accessibility through the application.
 
 ### Done [Live features]
