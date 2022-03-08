@@ -15,11 +15,11 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public Address createAddress(Address address) {
+    public Address create(Address address) {
         return addressRepository.save(address);
     }
 
-    public void deleteAddress(Long id) {
+    public void delete(Long id) {
         Address foundAddress = addressRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         addressRepository.deleteById(foundAddress.getId());
     }
