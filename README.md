@@ -26,6 +26,10 @@ different degree of access throughout the application.
 * Thymeleaf frontend
 * Implementation of JMS
 * Various levels of accessibility
+* MySQL database 
+* Dockerfile + Container
+* Token system
+* Comprehensive unit testing
 
 ---
 
