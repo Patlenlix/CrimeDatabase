@@ -21,9 +21,10 @@ public class CrimeController {
 
     @PostMapping
     public ResponseEntity<Crime> create(@RequestBody Crime crime) {
-        Crime createdCrime = crimeService.create(crime);
         if (crime.getName().isEmpty())
             throw new BadRequestException("Crime name cannot be empty");
+
+        Crime createdCrime = crimeService.create(crime);
         return new ResponseEntity<>(createdCrime, HttpStatus.CREATED);
     }
 
@@ -31,6 +32,7 @@ public class CrimeController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (crimeService.findById(id).isEmpty())
             throw new NotFoundException(responseMessage(id));
+
         crimeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -50,7 +52,7 @@ public class CrimeController {
         if (!crimes.iterator().hasNext())
             throw new NotFoundException("No crimes found");
 
-        return new ResponseEntity<>(crimes, HttpStatus.OK);
+        return new ResponseEntity<>(crimes, HttpStatus.FOUND);
     }
 
     private String responseMessage(Long id) {

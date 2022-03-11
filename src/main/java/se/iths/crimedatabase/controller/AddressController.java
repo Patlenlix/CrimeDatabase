@@ -21,8 +21,7 @@ public class AddressController {
 
     @PostMapping
     public ResponseEntity<Address> create(@RequestBody Address address) {
-        if(address.getStreetAddress().isEmpty() || address.getCity().isEmpty() ||
-           address.getZipCode().isEmpty())
+        if (address.getStreetAddress().isEmpty() || address.getCity().isEmpty() || address.getZipCode().isEmpty())
             throw new BadRequestException("Street address, city and zipcode cannot be empty");
 
         Address createdAddress = addressService.create(address);
@@ -53,7 +52,7 @@ public class AddressController {
         if (!addresses.iterator().hasNext())
             throw new NotFoundException("No addresses found");
 
-        return new ResponseEntity<>(addresses, HttpStatus.OK);
+        return new ResponseEntity<>(addresses, HttpStatus.FOUND);
     }
 
     private String responseMessage(Long id) {

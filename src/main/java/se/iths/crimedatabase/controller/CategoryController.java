@@ -52,7 +52,7 @@ public class CategoryController {
         if(!categories.iterator().hasNext())
             throw new NotFoundException("No categories found");
 
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+        return new ResponseEntity<>(categories, HttpStatus.FOUND);
     }
 
     private String responseMessage(Long id) {

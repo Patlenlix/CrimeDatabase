@@ -52,7 +52,7 @@ public class CriminalController {
         if (!criminals.iterator().hasNext())
             throw new NotFoundException("No criminals found");
 
-        return new ResponseEntity<>(criminals, HttpStatus.OK);
+        return new ResponseEntity<>(criminals, HttpStatus.FOUND);
     }
 
     private String responseMessage(Long id) {

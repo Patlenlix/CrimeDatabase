@@ -28,7 +28,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({MethodNotAllowedException.class})
     public ResponseEntity<?> handleNotAllowed(MethodNotAllowedException exception){
-        String message = "CRUD method not allowed";
+        String message = "Method not allowed";
         return buildResponseEntity(new ExceptionApi(HttpStatus.METHOD_NOT_ALLOWED,message,exception));
     }
 

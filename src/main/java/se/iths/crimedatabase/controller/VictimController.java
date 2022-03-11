@@ -52,7 +52,7 @@ public class VictimController {
 
         if (!victims.iterator().hasNext())
             throw new NotFoundException("No victims found");
-        return new ResponseEntity<>(victims, HttpStatus.OK);
+        return new ResponseEntity<>(victims, HttpStatus.FOUND);
     }
 
     private String responseMessage(Long id) {
