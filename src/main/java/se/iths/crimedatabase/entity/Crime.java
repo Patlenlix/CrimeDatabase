@@ -28,9 +28,17 @@ public class Crime {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Set<Victim> victims = new HashSet<>();
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Set<Criminal> criminals = new HashSet<>();
+
     public void addVictim(Victim victim) {
         victims.add(victim);
         victim.getCrimes().add(this);
+    }
+
+    public void addCriminal(Criminal criminal) {
+        criminals.add(criminal);
+        criminal.getCrimes().add(this);
     }
 
     public Long getId() {
@@ -87,4 +95,12 @@ public class Crime {
         return this;
     }
 
+    public Set<Criminal> getCriminals() {
+        return criminals;
+    }
+
+    public Crime setCriminals(Set<Criminal> criminals) {
+        this.criminals = criminals;
+        return this;
+    }
 }
