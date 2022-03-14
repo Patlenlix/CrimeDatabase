@@ -32,4 +32,12 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
+    public void update(Address address, Long id) {
+        if (findById(id).isEmpty()) {
+            //throw new
+        }
+        address.setId(id);
+        addressRepository.save(address);
+    }
+
 }

@@ -32,4 +32,11 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public void update(Category category, Long id) {
+        if (findById(id).isEmpty()) {
+            //throw new
+        }
+        category.setId(id);
+        categoryRepository.save(category);
+    }
 }

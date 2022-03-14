@@ -32,4 +32,14 @@ public class CrimeService {
         return crimeRepository.findAll();
     }
 
+
+    public void update(Crime crime, Long id) {
+        if (findById(id).isEmpty()) {
+            //throw new
+        }
+        crime.setId(id);
+        crimeRepository.save(crime);
+    }
+
+
 }
