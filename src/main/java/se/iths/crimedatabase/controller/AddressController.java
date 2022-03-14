@@ -41,4 +41,14 @@ public class AddressController {
         return new ResponseEntity<>(addresses, HttpStatus.OK);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Address> update(@PathVariable Long id, @RequestBody Address address) {
+    /*    if(address.getId() == null){
+            //throw new
+        }
+       */
+        addressService.update(address, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
