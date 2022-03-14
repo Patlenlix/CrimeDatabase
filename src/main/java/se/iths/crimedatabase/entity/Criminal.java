@@ -21,7 +21,7 @@ public class Criminal {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Address address;
 
     @ManyToMany(mappedBy = "criminals", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
