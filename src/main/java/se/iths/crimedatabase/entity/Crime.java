@@ -20,6 +20,9 @@ public class Crime {
     @JoinColumn
     private Category category;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Address address;
+
     public Long getId() {
         return id;
     }
@@ -55,4 +58,14 @@ public class Crime {
         this.category = category;
         return this;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Crime setAddress(Address address) {
+        this.address = address;
+        return this;
+    }
+
 }
