@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Crime {
@@ -22,6 +24,14 @@ public class Crime {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address address;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Set<Victim> victims = new HashSet<>();
+
+    public void addVictim(Victim victim) {
+        victims.add(victim);
+        victim.getCrimes().add(this);
+    }
 
     public Long getId() {
         return id;
@@ -65,6 +75,15 @@ public class Crime {
 
     public Crime setAddress(Address address) {
         this.address = address;
+        return this;
+    }
+
+    public Set<Victim> getVictims() {
+        return victims;
+    }
+
+    public Crime setVictims(Set<Victim> victims) {
+        this.victims = victims;
         return this;
     }
 
