@@ -24,7 +24,7 @@ public class Victim {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address address;
 
-    @ManyToMany(mappedBy = "victims")
+    @ManyToMany(mappedBy = "victims", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Set<Crime> crimes = new HashSet<>();
 
     public Long getId() {
