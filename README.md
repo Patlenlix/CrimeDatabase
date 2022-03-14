@@ -36,10 +36,15 @@ different degree of access throughout the application.
 ### Deployment
 
 1. Clone/Fork this repo in your favorite IDE
-2. Create a .jar file: Run `mvn package`
-3. Build the image: Go to the folder of the application and run the following from you CLI:
+2. Install Docker Desktop
+3. Create and run MySQL docker image/container:
+   1. Run command in
+      Console: `docker run --name mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -e 'MYSQL_ROOT_HOST=%' -e MYSQL_DATABASE=crime -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3309:3306 mysql:latest`
+4. Create a .jar file: Go to the folder of the application and run the following from your
+   Console: `./mvnw clean package`
+5. Build the image: Go to the folder of the application and run the following from your Console:
    `docker image build -t crimedb .`
-4. Run the application: `docker container run crimedb`
+6. Run the application: `docker container run crimedb`
 
 ---
 
