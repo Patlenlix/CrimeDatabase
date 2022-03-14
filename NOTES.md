@@ -91,6 +91,6 @@ Gått igenom kvarliggande issues från vecka 10. Delat upp uppgifter för dagen 
 - Change to MySQL
 - Read up on Maven Wrapper
 
-#### End of notes 2022-03-014
+#### End of notes 2022-03-14
 
 ---
