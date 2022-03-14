@@ -3,10 +3,7 @@ package se.iths.crimedatabase.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,6 +15,10 @@ public class Crime {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private Category category;
 
     public Long getId() {
         return id;
@@ -43,6 +44,15 @@ public class Crime {
 
     public Crime setTime(LocalDateTime time) {
         this.time = time;
+        return this;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Crime setCategory(Category category) {
+        this.category = category;
         return this;
     }
 }
