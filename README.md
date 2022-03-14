@@ -26,7 +26,7 @@ different degree of access throughout the application.
 * Thymeleaf frontend
 * Implementation of JMS
 * Various levels of accessibility
-* MySQL database 
+* MySQL database
 * Dockerfile + Container
 * Token system
 * Comprehensive unit testing
@@ -35,9 +35,11 @@ different degree of access throughout the application.
 
 ### Deployment
 
-```
-- Clone/Fork this repo in your favorite IDE
-```
+1. Clone/Fork this repo in your favorite IDE
+2. Create a .jar file: Run `mvn package`
+3. Build the image: Go to the folder of the application and run the following from you CLI:
+   `docker image build -t crimedb .`
+4. Run the application: `docker container run crimedb`
 
 ---
 
