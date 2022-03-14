@@ -3,10 +3,7 @@ package se.iths.crimedatabase.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +16,8 @@ public class Victim {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Address address;
 
     public Long getId() {
         return id;
@@ -56,4 +55,12 @@ public class Victim {
         return this;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public Victim setAddress(Address address) {
+        this.address = address;
+        return this;
+    }
 }
