@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Publish on Docker Hub
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out our repository under $GITHUB_WORKSPACE, so our workflow can access it
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      # Uses our PAT and username to log into Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      # Setup Docker Buildx to create the builder instance using a BuildKit container under the hood
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
