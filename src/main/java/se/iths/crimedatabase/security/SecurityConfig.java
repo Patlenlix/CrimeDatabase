@@ -28,10 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().anyRequest().authenticated() //Authenticated users are authorized to make any request
+                .authorizeRequests()
+                .antMatchers("/criminals").hasRole("ADMIN") //Only admin can access criminals
+                .antMatchers("/victims").hasRole("ADMIN") //Only admin can access victims
+                .anyRequest().authenticated() //Authenticated users are authorized to make any request except the above.
                 .and()
                 .httpBasic(); //Uses http basic as authentication
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
