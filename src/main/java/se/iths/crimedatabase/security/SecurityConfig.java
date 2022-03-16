@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/criminals").hasRole("ADMIN") //Only admin can access criminals
                 .antMatchers("/victims").hasRole("ADMIN") //Only admin can access victims
+                .antMatchers("/users").hasRole("ADMIN") //Only admin can access users
                 .anyRequest().authenticated() //Authenticated users are authorized to make any request except the above.
                 .and()
                 .httpBasic(); //Uses http basic as authentication
