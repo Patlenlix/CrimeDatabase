@@ -3,9 +3,11 @@ package se.iths.crimedatabase.security;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import se.iths.crimedatabase.entity.User;
 import se.iths.crimedatabase.repository.UserRepository;
 
+@Service
 public class UserPrincipalDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
