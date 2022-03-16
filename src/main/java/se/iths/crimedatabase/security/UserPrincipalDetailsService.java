@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import se.iths.crimedatabase.entity.User;
 import se.iths.crimedatabase.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserPrincipalDetailsService implements UserDetailsService {
     UserRepository userRepository;
@@ -17,9 +19,9 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        UserPrincipal userPrincipal = new UserPrincipal(user);
-
-        return userPrincipal;
+        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
+        if (user.isEmpty())
+            throw new UsernameNotFoundException("Can't find user with username " + username);
+        return new UserPrincipal(user.get());
     }
 }
