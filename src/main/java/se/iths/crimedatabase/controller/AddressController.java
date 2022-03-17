@@ -58,4 +58,15 @@ public class AddressController {
     private String responseMessage(Long id) {
         return "Address with id: " + id + " cannot be found";
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Address> update(@PathVariable Long id, @RequestBody Address address) {
+    /*    if(address.getId() == null){
+            //throw new
+        }
+       */
+        addressService.update(address, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

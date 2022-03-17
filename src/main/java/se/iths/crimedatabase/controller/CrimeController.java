@@ -59,4 +59,14 @@ public class CrimeController {
         return "Crime with id: " + id + " cannot be found";
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Crime> update(@PathVariable Long id, @RequestBody Crime crime) {
+    /*    if(crime.getId() == null){
+            //throw new
+        }
+       */
+        crimeService.update(crime, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

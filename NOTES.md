@@ -70,6 +70,27 @@ DEPLOYMENT:
 - Docker?
 - Wrapper?
 
+---
+
+### [Project Notes Week 10](https://docs.google.com/document/d/1sN9vkcyzUYCXPfoDVCRUyKBABQtA_xFz9SZt18YcXR4/edit?usp=sharing)
+
 #### End of notes 2022-03-08
+
+---
+
+# Projektmöte 2 - 2022-03-14
+
+Gått igenom kvarliggande issues från vecka 10. Delat upp uppgifter för dagen och veckan. Omprioriterat och diskuterat angående tester och security.
+
+### ATT GÖRA
+- Exceptions
+- Dockerfile
+- Logger
+- Release tag & Deployment
+- Add Update CRUD endpoint
+- Change to MySQL
+- Read up on Maven Wrapper
+
+#### End of notes 2022-03-14
 
 ---
