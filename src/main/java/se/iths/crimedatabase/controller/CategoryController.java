@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.crimedatabase.entity.Category;
 import se.iths.crimedatabase.exception.BadRequestException;
+import se.iths.crimedatabase.exception.MethodNotAllowedException;
 import se.iths.crimedatabase.exception.NotFoundException;
 import se.iths.crimedatabase.service.CategoryService;
 
@@ -49,23 +50,24 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<Iterable<Category>> findAll() {
         Iterable<Category> categories = categoryService.findAll();
-        if(!categories.iterator().hasNext())
+        if (!categories.iterator().hasNext())
             throw new NotFoundException("No categories found");
 
-        return new ResponseEntity<>(categories, HttpStatus.FOUND);
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category category) {
+        if (categoryService.findById(id).isEmpty())
+            throw new MethodNotAllowedException("Category with id: " + id + " cannot be updated since it does not exist");
+
+
+        categoryService.update(category, id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private String responseMessage(Long id) {
         return "Category with id: " + id + " cannot be found";
-
-    @PutMapping("{id}")
-    public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category category) {
-    /*    if(category.getId() == null){
-            //throw new
-        }
-       */
-        categoryService.update(category, id);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

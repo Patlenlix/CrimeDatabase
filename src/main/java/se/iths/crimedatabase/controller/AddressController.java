@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.exception.BadRequestException;
+import se.iths.crimedatabase.exception.MethodNotAllowedException;
 import se.iths.crimedatabase.exception.NotFoundException;
 import se.iths.crimedatabase.service.AddressService;
 
@@ -52,7 +53,7 @@ public class AddressController {
         if (!addresses.iterator().hasNext())
             throw new NotFoundException("No addresses found");
 
-        return new ResponseEntity<>(addresses, HttpStatus.FOUND);
+        return new ResponseEntity<>(addresses, HttpStatus.OK);
     }
 
     private String responseMessage(Long id) {
@@ -61,10 +62,10 @@ public class AddressController {
 
     @PutMapping("{id}")
     public ResponseEntity<Address> update(@PathVariable Long id, @RequestBody Address address) {
-    /*    if(address.getId() == null){
-            //throw new
-        }
-       */
+        if (addressService.findById(id).isEmpty())
+            throw new MethodNotAllowedException("Address with id: " + id + " cannot be updated since it does not exist");
+
+
         addressService.update(address, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

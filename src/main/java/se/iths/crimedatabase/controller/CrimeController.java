@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.crimedatabase.entity.Crime;
 import se.iths.crimedatabase.exception.BadRequestException;
+import se.iths.crimedatabase.exception.MethodNotAllowedException;
 import se.iths.crimedatabase.exception.NotFoundException;
 import se.iths.crimedatabase.service.CrimeService;
 
@@ -55,18 +56,18 @@ public class CrimeController {
         return new ResponseEntity<>(crimes, HttpStatus.FOUND);
     }
 
-    private String responseMessage(Long id) {
-        return "Crime with id: " + id + " cannot be found";
-    }
-
     @PutMapping("{id}")
     public ResponseEntity<Crime> update(@PathVariable Long id, @RequestBody Crime crime) {
-    /*    if(crime.getId() == null){
-            //throw new
-        }
-       */
+        if (crimeService.findById(id).isEmpty())
+            throw new MethodNotAllowedException("Crime with id: " + id + " cannot be updated since it does not exist");
+
+
         crimeService.update(crime, id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private String responseMessage(Long id) {
+        return "Crime with id: " + id + " cannot be found";
     }
 
 }
