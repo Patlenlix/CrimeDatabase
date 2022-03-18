@@ -9,7 +9,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
     private ResponseEntity<Object> buildResponseEntity(ExceptionApi api){
         return new ResponseEntity<>(api,api.getStatus());
     }
