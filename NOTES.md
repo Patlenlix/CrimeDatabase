@@ -98,7 +98,7 @@ Gått igenom kvarliggande issues från vecka 10. Delat upp uppgifter för dagen 
 # Projektmöte 3 - 2022-03-18
 
 Gått igenom vad vi gjort i veckan samt pratat om kvarliggande issues. Gått igenom security och kollar på lösning till custom exceptions ihop. 
-Vi har även delat upp uppgifter för nästa veckan samt diskuterat hur vi vill lägga upp vårt arbete (tider/dagar) så vi jobba mer synkat. 
+Vi har även delat upp uppgifter för nästa vecka samt diskuterat hur vi vill lägga upp vårt arbete (tider/dagar) så vi jobba mer synkat. 
 
 Vi kom fram till:
 - Jobba mån, tors, fre "dagtid" (sitta ihop i skolan de flesta måndagar och fredagar)
