@@ -107,10 +107,12 @@ Vi kom fram till:
 ### ATT GÖRA
 Patrik:
 - JMS
+
 Helena:
 - Lägg in Security
 - Uppdatera README
 - Börja med Tester
+
 Felix:
 - Gör klart exceptions
 - Release tag
