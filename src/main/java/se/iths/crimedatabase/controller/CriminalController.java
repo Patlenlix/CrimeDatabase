@@ -41,4 +41,13 @@ public class CriminalController {
         return new ResponseEntity<>(criminals, HttpStatus.OK);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Criminal> update(@PathVariable Long id, @RequestBody Criminal criminal) {
+    /*    if(criminal.getId() == null){
+            //throw new
+        }
+       */
+        criminalService.update(criminal, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -32,4 +32,12 @@ public class VictimService {
         return victimRepository.findAll();
     }
 
+    public void update(Victim victim, Long id) {
+        if (findById(id).isEmpty()) {
+            //throw new
+        }
+        victim.setId(id);
+        victimRepository.save(victim);
+    }
+
 }

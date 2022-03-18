@@ -3,22 +3,29 @@ package se.iths.crimedatabase.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Victim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
     private String lastName;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Address address;
+
+    @ManyToMany(mappedBy = "victims", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Set<Crime> crimes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -56,4 +63,21 @@ public class Victim {
         return this;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public Victim setAddress(Address address) {
+        this.address = address;
+        return this;
+    }
+
+    public Set<Crime> getCrimes() {
+        return crimes;
+    }
+
+    public Victim setCrimes(Set<Crime> crimes) {
+        this.crimes = crimes;
+        return this;
+    }
 }
