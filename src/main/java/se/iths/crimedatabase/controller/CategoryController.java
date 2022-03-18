@@ -32,7 +32,7 @@ public class CategoryController {
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (categoryService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         categoryService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -41,7 +41,7 @@ public class CategoryController {
     @GetMapping("{id}")
     public ResponseEntity<Optional<Category>> findById(@PathVariable Long id) {
         if (categoryService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         Optional<Category> foundCategory = categoryService.findById(id);
         return new ResponseEntity<>(foundCategory, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private String responseMessage(Long id) {
+    private String notFoundMessage(Long id) {
         return "Category with id: " + id + " cannot be found";
     }
 

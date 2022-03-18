@@ -51,7 +51,7 @@ public class VictimController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private String responseMessage(Long id) {
+    private String notFoundMessage(Long id) {
         return "Victim with id: " + id + " cannot be found";
     }
 

@@ -32,7 +32,7 @@ public class CrimeController {
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (crimeService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         crimeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -41,7 +41,7 @@ public class CrimeController {
     @GetMapping("{id}")
     public ResponseEntity<Optional<Crime>> findById(@PathVariable Long id) {
         if (crimeService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         Optional<Crime> foundCrime = crimeService.findById(id);
         return new ResponseEntity<>(foundCrime, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class CrimeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private String responseMessage(Long id) {
+    private String notFoundMessage(Long id) {
         return "Crime with id: " + id + " cannot be found";
     }
 
