@@ -94,3 +94,28 @@ Gått igenom kvarliggande issues från vecka 10. Delat upp uppgifter för dagen 
 #### End of notes 2022-03-14
 
 ---
+
+# Projektmöte 3 - 2022-03-18
+
+Gått igenom vad vi gjort i veckan samt pratat om kvarliggande issues. Gått igenom security och kollar på lösning till custom exceptions ihop. 
+Vi har även delat upp uppgifter för nästa veckan samt diskuterat hur vi vill lägga upp vårt arbete (tider/dagar) så vi jobba mer synkat. 
+
+Vi kom fram till:
+- Jobba mån, tors, fre "dagtid" (sitta ihop i skolan de flesta måndagar och fredagar)
+- Övrig tid fördelar man som man vill. Kolla på video, läsa på osv. görs då man har tid. Cirka 1 dag(8h)/vecka utöver den tid vi lägger ihop.
+
+### ATT GÖRA
+Patrik:
+- JMS
+Helena:
+- Lägg in Security
+- Uppdatera README
+- Börja med Tester
+Felix:
+- Gör klare exceptions
+- Release tag
+- Börja med Thymeleaf
+
+#### End of notes 2022-03-14
+
+---
