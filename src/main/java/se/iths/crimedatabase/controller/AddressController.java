@@ -32,7 +32,7 @@ public class AddressController {
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (addressService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         addressService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -41,7 +41,7 @@ public class AddressController {
     @GetMapping("{id}")
     public ResponseEntity<Optional<Address>> findById(@PathVariable Long id) {
         if (addressService.findById(id).isEmpty())
-            throw new NotFoundException(responseMessage(id));
+            throw new NotFoundException(notFoundMessage(id));
 
         Optional<Address> foundAddress = addressService.findById(id);
         return new ResponseEntity<>(foundAddress, HttpStatus.OK);
@@ -56,18 +56,17 @@ public class AddressController {
         return new ResponseEntity<>(addresses, HttpStatus.OK);
     }
 
-    private String responseMessage(Long id) {
-        return "Address with id: " + id + " cannot be found";
-    }
-
     @PutMapping("{id}")
     public ResponseEntity<Address> update(@PathVariable Long id, @RequestBody Address address) {
         if (addressService.findById(id).isEmpty())
             throw new MethodNotAllowedException("Address with id: " + id + " cannot be updated since it does not exist");
 
-
         addressService.update(address, id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private String notFoundMessage(Long id) {
+        return "Address with id: " + id + " cannot be found";
     }
 
 }
