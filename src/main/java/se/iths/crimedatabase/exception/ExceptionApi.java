@@ -10,18 +10,18 @@ public class ExceptionApi {
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-mm-yyyy hh:mm:ss" )
     private LocalDateTime timestamp;
     private HttpStatus status;
+    private String statusDescription;
     private String message;
-    private String details;
 
     public ExceptionApi(){
         timestamp = LocalDateTime.now();
     }
 
-    public ExceptionApi(HttpStatus status, String message, Throwable ex) {
+    public ExceptionApi(HttpStatus status, String statusDescription, Throwable ex) {
         this();
         this.status = status;
-        this.message = message;
-        this.details = ex.getLocalizedMessage();
+        this.statusDescription = statusDescription;
+        this.message = ex.getLocalizedMessage();
     }
 
     public LocalDateTime getTimestamp() {
@@ -40,19 +40,19 @@ public class ExceptionApi {
         this.status = status;
     }
 
+    public String getStatusDescription() {
+        return statusDescription;
+    }
+
+    public void setStatusDescription(String statusDescription) {
+        this.statusDescription = statusDescription;
+    }
+
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 }
