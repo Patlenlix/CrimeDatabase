@@ -112,7 +112,7 @@ Helena:
 - Uppdatera README
 - Börja med Tester
 Felix:
-- Gör klare exceptions
+- Gör klart exceptions
 - Release tag
 - Börja med Thymeleaf
 
