@@ -51,7 +51,101 @@ different degree of access throughout the application.
 
 ### Endpoints
 
-```
-http://localhost:8080
+All URLs start with `http://localhost:8080/`
+
+#### Category:
+
+| HTTP-verb | URL              | Authorization           | Info                            |
+|-----------|------------------|-------------------------|---------------------------------|
+| POST      | /categories      | All authenticated users | Creates category                |
+| DELETE    | /categories/{id} | All authenticated users | Deletes category with id = {id} |
+| GET       | /categories/{id} | All authenticated users | Returns category with id = {id} |
+| GET       | /categories      | All authenticated users | Returns all categories          |
+| PUT       | /categories/{id} | All authenticated users | Updates category with id = {id} |
+
+POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
+
+```json
+{
+   "name": "Theft"
+}
 ```
 
+#### Victim:
+
+| HTTP-verb | URL             | Authorization                       | Info                          |
+|-----------|-----------------|-------------------------------------|-------------------------------|
+| POST      | /victims        | Authenticated users with role ADMIN | Creates victim                |
+| DELETE    | /victims/{id}   | Authenticated users with role ADMIN | Deletes victim with id = {id} |
+| GET       | /victims/{id}   | Authenticated users with role ADMIN | Returns victim with id = {id} |
+| GET       | /victims        | Authenticated users with role ADMIN | Returns all victims           |
+| PUT       | /victims/{id}   | Authenticated users with role ADMIN | Updates victim with id = {id} |
+
+POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
+
+```json
+{
+   "firstName": "John",
+   "lastName": "Doe",
+   "dateOfBirth": "2000-01-01"
+}
+```
+
+#### Criminal:
+
+| HTTP-verb | URL             | Authorization                       | Info                            |
+|-----------|-----------------|-------------------------------------|---------------------------------|
+| POST      | /criminals      | Authenticated users with role ADMIN | Creates criminal                |
+| DELETE    | /criminals/{id} | Authenticated users with role ADMIN | Deletes criminal with id = {id} |
+| GET       | /criminals/{id} | Authenticated users with role ADMIN | Returns criminal with id = {id} |
+| GET       | /criminals      | Authenticated users with role ADMIN | Returns all criminals           |
+| PUT       | /criminals/{id} | Authenticated users with role ADMIN | Updates criminal with id = {id} |
+
+POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
+
+```json
+{
+   "firstName": "John",
+   "lastName": "Doe",
+   "dateOfBirth": "2000-01-01"
+}
+```
+
+#### Address:
+
+| HTTP-verb | URL                | Authorization           | Info                           |
+|-----------|--------------------|-------------------------|--------------------------------|
+| POST      | /addresses         | All authenticated users | Creates address                |
+| DELETE    | /addresses/{id}    | All authenticated users | Deletes address with id = {id} |
+| GET       | /addresses/{id}    | All authenticated users | Returns address with id = {id} |
+| GET       | /addresses         | All authenticated users | Returns all addresses          |
+| PUT       | /addresses/{id}    | All authenticated users | Updates address with id = {id} |
+
+POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
+
+```json
+{
+   "city": "Gothenburg",
+   "zipCode": "41324",
+   "streetAddress": "Street 1"
+}
+```
+
+#### Crime:
+
+| HTTP-verb | URL              | Authorization           | Info                           |
+|-----------|------------------|-------------------------|--------------------------------|
+| POST      | /crimes          | All authenticated users | Creates crime                  |
+| DELETE    | /crimes/{id}     | All authenticated users | Deletes crime with id = {id}   |
+| GET       | /crimes/{id}     | All authenticated users | Returns crime with id = {id}   |
+| GET       | /crimes          | All authenticated users | Returns all crimes             |
+| PUT       | /crimes/{id}     | All authenticated users | Updates crime with id = {id}   |
+
+POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
+
+```json
+{
+   "name": "Example crime",
+   "time": "2022-03-18 15:48"
+}
+```
