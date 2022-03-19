@@ -51,7 +51,7 @@ different degree of access throughout the application.
 
 ### Endpoints
 
-All URLs start with `http://localhost:8080/`
+All URLs start with `http://localhost:8080`
 
 #### Category:
 
