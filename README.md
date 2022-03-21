@@ -32,6 +32,8 @@ different degree of access throughout the application.
 * Token system
 * Comprehensive unit testing
 
+#### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
+
 ---
 
 ### Deployment
