@@ -1,0 +1,8 @@
+target/
+README.md
+.github/
+.gitignore
+.idea/
+src/**
+!src/main/**
+
