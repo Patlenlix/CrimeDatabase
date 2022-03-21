@@ -9,20 +9,21 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    private ResponseEntity<Object> buildResponseEntity(ExceptionApi api){
-        return new ResponseEntity<>(api,api.getStatus());
+
+    private ResponseEntity<Object> buildResponseEntity(ExceptionApi error) {
+        return new ResponseEntity<>(error, error.getStatus());
     }
 
     @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<?> handleBadRequest(BadRequestException exception){
+    public ResponseEntity<?> handleBadRequest(BadRequestException exception) {
         String message = "Bad request to server";
-        return buildResponseEntity(new ExceptionApi(HttpStatus.BAD_REQUEST,message,exception));
+        return buildResponseEntity(new ExceptionApi(HttpStatus.BAD_REQUEST, message, exception));
     }
 
     @ExceptionHandler({NotFoundException.class})
-    public ResponseEntity<?> handleNotFound(NotFoundException exception){
+    public ResponseEntity<?> handleNotFound(NotFoundException exception) {
         String message = "No entity found";
-        return buildResponseEntity(new ExceptionApi(HttpStatus.NOT_FOUND,message,exception));
+        return buildResponseEntity(new ExceptionApi(HttpStatus.NOT_FOUND, message, exception));
     }
 
     @ExceptionHandler({MethodNotAllowedException.class})
