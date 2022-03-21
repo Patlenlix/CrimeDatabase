@@ -15,21 +15,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<?> handleBadRequest(BadRequestException exception) {
+    public ResponseEntity<Object> handleBadRequest(BadRequestException exception) {
         String message = "Bad request to server";
         return buildResponseEntity(new ExceptionApi(HttpStatus.BAD_REQUEST, message, exception));
     }
 
     @ExceptionHandler({NotFoundException.class})
-    public ResponseEntity<?> handleNotFound(NotFoundException exception) {
+    public ResponseEntity<Object> handleNotFound(NotFoundException exception) {
         String message = "No entity found";
         return buildResponseEntity(new ExceptionApi(HttpStatus.NOT_FOUND, message, exception));
     }
 
     @ExceptionHandler({MethodNotAllowedException.class})
-    public ResponseEntity<?> handleNotAllowed(MethodNotAllowedException exception){
+    public ResponseEntity<Object> handleNotAllowed(MethodNotAllowedException exception) {
         String message = "Method not allowed";
-        return buildResponseEntity(new ExceptionApi(HttpStatus.METHOD_NOT_ALLOWED,message,exception));
+        return buildResponseEntity(new ExceptionApi(HttpStatus.METHOD_NOT_ALLOWED, message, exception));
     }
 
 
