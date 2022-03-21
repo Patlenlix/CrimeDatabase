@@ -23,14 +23,13 @@ different degree of access throughout the application.
 
 ### Planned features
 
-* Spring security milestone
-   * Various levels of accessibility
-* Release tag deployment milestone
-* Thymeleaf frontend milestone
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/1)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
 * Implementation of JMS/ActiveMQ
 * MySQL database
-* Token system
-* Comprehensive unit testing milestone
+
 
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
 
