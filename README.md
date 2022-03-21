@@ -16,7 +16,7 @@ different degree of access throughout the application.
 ### Done [Live features]
 
 * CRUD functionality for all current entities
-* Crime, Criminal, User, Victim entities
+* Crime, Criminal, User, Victim, Category and Address entities
 * Database relations
 * Dockerfile + Container
 * Custom exceptions
