@@ -27,7 +27,7 @@ different degree of access throughout the application.
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
-* Implementation of JMS/ActiveMQ
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
 * MySQL database
 
 
