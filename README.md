@@ -19,18 +19,18 @@ different degree of access throughout the application.
 * Crime, Criminal, User, Victim entities
 * Database relations
 * Dockerfile + Container
+* Custom exceptions
 
 ### Planned features
 
 * Spring security milestone
+   * Various levels of accessibility
 * Release tag deployment milestone
-* Custom exceptions
-* Thymeleaf frontend
+* Thymeleaf frontend milestone
 * Implementation of JMS/ActiveMQ
-* Various levels of accessibility
 * MySQL database
 * Token system
-* Comprehensive unit testing
+* Comprehensive unit testing milestone
 
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
 
