@@ -33,11 +33,9 @@ public class AddressService {
     }
 
     public void update(Address address, Long id) {
-        if (findById(id).isEmpty()) {
-            //throw new
-        }
         address.setId(id);
         addressRepository.save(address);
     }
+
 
 }

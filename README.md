@@ -16,21 +16,22 @@ different degree of access throughout the application.
 ### Done [Live features]
 
 * CRUD functionality for all current entities
-* Crime, Criminal, User, Victim entities
+* Crime, Criminal, User, Victim, Category and Address entities
 * Database relations
 * Dockerfile + Container
+* Custom exceptions
 
 ### Planned features
 
-* Spring security milestone
-* Release tag deployment milestone
-* Custom exceptions
-* Thymeleaf frontend
-* Implementation of JMS/ActiveMQ
-* Various levels of accessibility
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/1)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
 * MySQL database
-* Token system
-* Comprehensive unit testing
+
+
+#### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
 
 ---
 
