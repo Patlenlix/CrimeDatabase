@@ -40,4 +40,14 @@ public class CategoryController {
         Iterable<Category> categories = categoryService.findAll();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category category) {
+    /*    if(category.getId() == null){
+            //throw new
+        }
+       */
+        categoryService.update(category, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

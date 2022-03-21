@@ -41,4 +41,14 @@ public class VictimController {
         return new ResponseEntity<>(victims, HttpStatus.OK);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Victim> update(@PathVariable Long id, @RequestBody Victim victim) {
+    /*    if(victim.getId() == null){
+            //throw new
+        }
+       */
+        victimService.update(victim, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
