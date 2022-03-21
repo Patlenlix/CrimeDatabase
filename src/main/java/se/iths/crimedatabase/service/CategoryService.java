@@ -33,9 +33,6 @@ public class CategoryService {
     }
 
     public void update(Category category, Long id) {
-        if (findById(id).isEmpty()) {
-            //throw new
-        }
         category.setId(id);
         categoryRepository.save(category);
     }

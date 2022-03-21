@@ -33,9 +33,6 @@ public class CriminalService {
     }
 
     public void update(Criminal criminal, Long id) {
-        if (findById(id).isEmpty()) {
-            //throw new
-        }
         criminal.setId(id);
         criminalRepository.save(criminal);
     }
