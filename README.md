@@ -29,7 +29,6 @@ different degree of access throughout the application.
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
 * Implementation of JMS/ActiveMQ
 * MySQL database
-* Token system
 
 
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
