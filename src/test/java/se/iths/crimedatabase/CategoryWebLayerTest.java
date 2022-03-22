@@ -21,20 +21,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(CategoryController.class)
+// TODO: Disable security
+
+@WebMvcTest(value = CategoryController.class)
 class CategoryWebLayerTest {
 
     @Autowired
     MockMvc mockMvc; //simulates HTTP requests
+
     /* We don't want to test we don’t want to test integration between controller and business logic
     but between controller and the HTTP layer */
     @MockBean
     CategoryService service;
+
     @Autowired
     private ObjectMapper objectMapper; //maps to and from JSON
 
+
     // 1.  Verifying HTTP Request Matching
     @Test
+    //@WithMockUser(username = "user", password = "user123")
     void verifyingHttpRequestMatching() throws Exception {
         mockMvc.perform(get("/categories"))
                 .andExpect(status().isOk());
@@ -52,11 +58,17 @@ class CategoryWebLayerTest {
                 .andExpect(status().isCreated());
     }
 
-    // 3. Verifying Input Validation
+    // 3. Verifying Input Validation + 6. Verifying Exception Handling
+    //TODO: Replace with two methods
     @Test
     void verifyingInputValidation() throws Exception {
-        //TODO: Add when exceptions have been implemented
+        Category category = new Category();
+        category.setName("").setId(1L);
 
+        mockMvc.perform(post("/categories/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(category)))
+                .andExpect(status().isBadRequest());
     }
 
     // 4. Verifying Business Logic Calls
@@ -86,13 +98,6 @@ class CategoryWebLayerTest {
         mockMvc.perform(get("/categories/{id}", 1L))
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("Test"));
-    }
-
-
-    // 6. Verifying Exception Handling
-    @Test
-    void verifyingExceptionHandling() {
-        //TODO: Add when exceptions have been implemented
     }
 
 }
