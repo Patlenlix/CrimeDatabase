@@ -1,13 +1,14 @@
 package se.iths.crimedatabase.messaging;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class CustomMessage {
     private String messageID;
     private String message;
-    private LocalDateTime messageDate;
+    private Date messageDate;
 
-    public CustomMessage(String messageID, String message, LocalDateTime messageDate) {
+    public CustomMessage(String messageID, String message, Date messageDate) {
         this.messageID = messageID;
         this.message = message;
         this.messageDate = messageDate;
@@ -31,11 +32,11 @@ public class CustomMessage {
         this.message = message;
     }
 
-    public LocalDateTime getMessageDate() {
+    public Date getMessageDate() {
         return messageDate;
     }
 
-    public void setMessageDate(LocalDateTime messageDate) {
+    public void setMessageDate(Date messageDate) {
         this.messageDate = messageDate;
     }
 
