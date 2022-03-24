@@ -12,20 +12,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-    //Used to authorize requests
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/criminals").hasRole("ADMIN") //Only admin can access criminals
-                .antMatchers("/victims").hasRole("ADMIN") //Only admin can access victims
-                .antMatchers("/users").hasRole("ADMIN") //Only admin can access users
-                .anyRequest().authenticated() //Authenticated users are authorized to make any request except the above.
+                .csrf().disable()
+                .httpBasic()
                 .and()
-                .httpBasic(); //Uses http basic as authentication
+                .authorizeRequests()
+                .antMatchers("/publish").permitAll()
+                .antMatchers("/criminals").hasRole("ADMIN")
+                .antMatchers("/victims").hasRole("ADMIN")
+                .antMatchers("/users").hasRole("ADMIN")
+                .anyRequest().authenticated();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
