@@ -40,13 +40,18 @@ different degree of access throughout the application.
 1. Clone/Fork this repo in your favorite IDE
 2. Install Docker Desktop
 3. Create and run MySQL docker image/container:
-   1. Run command in
-      Console: `docker run --name mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -e 'MYSQL_ROOT_HOST=%' -e MYSQL_DATABASE=crime -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3309:3306 mysql:latest`
-4. Create a .jar file: Go to the folder of the application and run the following from your
+   - Run command in
+      Console: `docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -e 'MYSQL_ROOT_HOST=%' -e MYSQL_DATABASE=crime -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3309:3306 mysql:latest`
+4. Create and run RabbitMQ message broker image/container:
+   - Run command in Console: `docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
+   - You can access management console at: `http://localhost:15672/`
+     - Username: guest
+     - Password: guest
+5. Create a .jar file: Go to the folder of the application and run the following from your
    Console: `./mvnw clean package`
-5. Build the image: Go to the folder of the application and run the following from your Console:
+6. Build the image: Go to the folder of the application and run the following from your Console:
    `docker image build -t crimedb .`
-6. Run the application: `docker container run crimedb`
+7. Run the application: `docker container run crimedb`
 
 ---
 
