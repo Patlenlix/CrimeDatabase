@@ -6,78 +6,105 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import se.iths.crimedatabase.controller.CategoryController;
 import se.iths.crimedatabase.entity.Category;
+import se.iths.crimedatabase.security.SecurityConfig;
 import se.iths.crimedatabase.service.CategoryService;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-// TODO: Disable security
 
-@WebMvcTest(value = CategoryController.class)
+@Import({SecurityConfig.class})
+@WebMvcTest(CategoryController.class)
 class CategoryWebLayerTest {
 
     @Autowired
-    MockMvc mockMvc; //simulates HTTP requests
+    private MockMvc mockMvc;
 
-    /* We don't want to test we don’t want to test integration between controller and business logic
-    but between controller and the HTTP layer */
     @MockBean
-    CategoryService service;
+    private CategoryService service;
 
     @Autowired
-    private ObjectMapper objectMapper; //maps to and from JSON
+    private ObjectMapper objectMapper;
 
-
-    // 1.  Verifying HTTP Request Matching
+    //1.  Verifying HTTP Request Matching
     @Test
-    //@WithMockUser(username = "user", password = "user123")
-    void verifyingHttpRequestMatching() throws Exception {
+    @WithMockUser
+    void verifyingHttpRequestMatchingForGetAll() throws Exception {
+        when(service.findAll()).thenReturn(List.of(new Category(1L, "Test")));
+
         mockMvc.perform(get("/categories"))
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @WithMockUser
+    void verifyingHttpRequestMatchingForGetById() throws Exception {
+        Long id = 1L;
+        Category category = new Category(id, "Test");
+        when(service.findById(id)).thenReturn(Optional.of(category));
+
+        mockMvc.perform(get("/categories/{id}", 1L))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void givenNoAuthRequestOnSecuredEndpoint_shouldFailWith401() throws Exception {
+        Long id = 1L;
+        Category category = new Category(id, "Test");
+        when(service.findById(id)).thenReturn(Optional.of(category));
+
+        mockMvc.perform(get("/categories/{id}", 1L))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(roles = {"ADMIN"})
+    void verifyingHttpRequestMatchingForDelete() throws Exception {
+        Long id = 1L;
+        doNothing().when(service).delete(id);
+
+        mockMvc.perform(delete("/categories/{id}", id))
+                .andExpect(status().isOk());
+    }
+
+
     // 2. Verifying Input Deserialization
     @Test
+    @WithMockUser
     void verifyingInputDeserialization() throws Exception {
-        Category category = new Category();
-        category.setName("Test");
+        Category category = new Category(1L, "Test");
+        when(service.create(category)).thenReturn(category);
 
-        mockMvc.perform(post("/categories/")
+        mockMvc.perform(post("/categories")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(category)))
                 .andExpect(status().isCreated());
+
     }
 
-    // 3. Verifying Input Validation + 6. Verifying Exception Handling
-    //TODO: Replace with two methods
-    @Test
-    void verifyingInputValidation() throws Exception {
-        Category category = new Category();
-        category.setName("").setId(1L);
+    // 3. Verifying Input Validation - we do not have any input validation
 
-        mockMvc.perform(post("/categories/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(category)))
-                .andExpect(status().isBadRequest());
-    }
 
     // 4. Verifying Business Logic Calls
     @Test
+    @WithMockUser
     void verifyingBusinessLogicCalls() throws Exception {
-        Category category = new Category();
-        category.setName("Test").setId(1L);
+        Category category = new Category(1L, "Test");
+        when(service.create(category)).thenReturn(category);
 
-        mockMvc.perform(post("/categories/")
+        mockMvc.perform(post("/categories")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(category)));
 
@@ -89,9 +116,9 @@ class CategoryWebLayerTest {
 
     // 5. Verifying Output Serialization
     @Test
+    @WithMockUser
     void verifyingOutputSerialization() throws Exception {
-        Category category = new Category();
-        category.setName("Test").setId(1L);
+        Category category = new Category(1L, "Test");
 
         when(service.findById(1L)).thenReturn(Optional.of(category));
 
@@ -100,4 +127,16 @@ class CategoryWebLayerTest {
                 .andExpect(jsonPath("$.name").value("Test"));
     }
 
+    // 6. Verifying Exception Handling
+    @Test
+    @WithMockUser
+    void verifyingInputValidation() throws Exception {
+        Category category = new Category(1L, "Test");
+        when(service.create(category)).thenReturn(category);
+
+        mockMvc.perform(post("/categories")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(category)))
+                .andExpect(status().isBadRequest());
+    }
 }
