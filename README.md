@@ -46,13 +46,13 @@ different degree of access throughout the application.
       - Username: guest
       - Password: guest
 4. Build the image:
-   - Go to the folder of the application and run the following from your Console:
-     `docker image build -t crimedb .`
-5. Run the application: `docker container run crimedb`
+    - Go to the folder of the application and run the following from your Console:
+      `docker image build -t crimedb .`
+5. Run the application: `docker container run --name crimedb -p 8080:8080 --link some-rabbit:some-rabbit crimedb`
 6. Use Insomnia to run the endpoints below
-   - Use Basic Auth:
-      - Username: admin
-      - Password: admin123
+    - Use Basic Auth:
+        - Username: admin
+        - Password: admin123
 
 ---
 
