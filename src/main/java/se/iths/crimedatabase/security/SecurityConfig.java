@@ -12,18 +12,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final String[] urls = {"/addresses", "/categories", "/crimes", "/criminals", "/users", "/victims"};
 
     //Used to authorize requests
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/criminals").hasRole("ADMIN") //Only admin can access criminals
-                .antMatchers("/victims").hasRole("ADMIN") //Only admin can access victims
-                .antMatchers("/users").hasRole("ADMIN") //Only admin can access users
-                .anyRequest().authenticated() //Authenticated users are authorized to make any request except the above.
+                .csrf()
+                .ignoringAntMatchers(urls)
                 .and()
-                .httpBasic(); //Uses http basic as authentication
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/criminals").hasRole("ADMIN")
+                .antMatchers("/victims").hasRole("ADMIN")
+                .antMatchers("/users").hasRole("ADMIN")
+                .anyRequest().authenticated();
+
     }
 
 
