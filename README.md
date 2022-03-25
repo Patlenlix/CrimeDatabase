@@ -20,14 +20,14 @@ different degree of access throughout the application.
 * Database relations
 * Dockerfile + Container
 * Custom exceptions
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/1)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
 
 ### Planned features
 
-* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/1)
-* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
-* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
 * MySQL database
 
 
@@ -39,20 +39,16 @@ different degree of access throughout the application.
 
 1. Clone/Fork this repo in your favorite IDE
 2. Install Docker Desktop
-3. Create and run MySQL docker image/container:
-    - Run command in
-      Console: `docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=my_secret_password -e 'MYSQL_ROOT_HOST=%' -e MYSQL_DATABASE=crime -e MYSQL_USER=user -e MYSQL_PASSWORD=password -p 3309:3306 mysql:latest`
-4. Create and run RabbitMQ message broker image/container:
-    - Run command in
-      Console: `docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
-    - You can access management console at: `http://localhost:15672/`
-        - Username: guest
-        - Password: guest
-5. Create a .jar file: Go to the folder of the application and run the following from your
-   Console: `./mvnw clean package`
-6. Build the image: Go to the folder of the application and run the following from your Console:
-   `docker image build -t crimedb .`
-7. Run the application: `docker container run crimedb`
+3. Create and run RabbitMQ message broker image/container:
+   - Run command in
+     Console: `docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
+   - You can access management console at: `http://localhost:15672/`
+      - Username: guest
+      - Password: guest
+4. Build the image:
+   - Go to the folder of the application and run the following from your Console:
+     `docker image build -t crimedb .`
+5. Run the application: `docker container run crimedb`
 
 ---
 
@@ -154,5 +150,19 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 {
    "name": "Example crime",
    "time": "2022-03-18 15:48"
+}
+```
+
+#### Publish RabbitMQ Messaging Service:
+
+| HTTP-verb | URL      | Authorization           | Info                                 |
+|-----------|----------|-------------------------|--------------------------------------|
+| POST      | /publish | All authenticated users | Sends message internally to Listener |
+
+POST needs a Body with a JSON object. Example of body for POST:
+
+```json
+{
+   "message": "Sample message"
 }
 ```
