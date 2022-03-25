@@ -12,3 +12,4 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 
 }
+
