@@ -49,6 +49,10 @@ different degree of access throughout the application.
    - Go to the folder of the application and run the following from your Console:
      `docker image build -t crimedb .`
 5. Run the application: `docker container run crimedb`
+6. Use Insomnia to run the endpoints below
+   - Use Basic Auth:
+      - Username: admin
+      - Password: admin123
 
 ---
 
