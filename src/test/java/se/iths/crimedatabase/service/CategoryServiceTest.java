@@ -45,7 +45,7 @@ class CategoryServiceTest {
         List<Category> categories = List.of(
                 new Category().setName("Theft").setId(1L),
                 new Category().setName("Burglary").setId(2L),
-                new Category().setName("shoplifting").setId(3L));
+                new Category().setName("Shoplifting").setId(3L));
 
         when(repository.findAll()).thenReturn(categories);
 
