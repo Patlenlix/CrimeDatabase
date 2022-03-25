@@ -69,16 +69,17 @@ class CategoryWebLayerTest {
                 .andExpect(status().isUnauthorized());
     }
 
+
     @Test
-    @WithMockUser(roles = {"ADMIN"})
+    @WithMockUser
     void verifyingHttpRequestMatchingForDelete() throws Exception {
         Long id = 1L;
+        when(service.findById(id)).thenReturn(Optional.of(new Category(id, "Test")));
         doNothing().when(service).delete(id);
 
         mockMvc.perform(delete("/categories/{id}", id))
                 .andExpect(status().isOk());
     }
-
 
     // 2. Verifying Input Deserialization
     @Test
@@ -131,7 +132,7 @@ class CategoryWebLayerTest {
     @Test
     @WithMockUser
     void verifyingInputValidation() throws Exception {
-        Category category = new Category(1L, "Test");
+        Category category = new Category(1L, "");
         when(service.create(category)).thenReturn(category);
 
         mockMvc.perform(post("/categories")

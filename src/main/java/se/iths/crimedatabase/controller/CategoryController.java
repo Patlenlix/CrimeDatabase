@@ -22,7 +22,7 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<Category> create(@RequestBody Category category) {
-        if (category.getName().isEmpty())
+        if (category.getName().isEmpty()) //TODO: Failar om man inte skickar med name, blir null pointer exception.
             throw new BadRequestException("Category name cannot be empty");
 
         Category createdCategory = categoryService.create(category);
