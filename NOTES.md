@@ -118,6 +118,27 @@ Felix:
 - Release tag
 - Börja med Thymeleaf
 
-#### End of notes 2022-03-14
+#### End of notes 2022-03-18
+
+---
+
+# Projektmöte 4 - 2022-03-25
+
+Vi diskuterade release.yml och hur vi ska kunna testa om den fungerar. Fick felmeddelande under stadiet (Build and pushDocker image). Vi löste detta genom att uppdatera Dockerfile och nu fungerar release.yml. Vi lade även till inställningar för CRFS disabling för CRUD endpoints vilket fick det att fungera för allt förutom delete. Vi fixade problem vi hade med filer som försvann från vår Thymeleaf implementation och gick igenom implementationen av basic JMS (RabbitMQ)
+
+### ATT GÖRA
+
+Patrik:
+- JMS
+- Rapport
+
+Helena:
+- Tester
+- Form based security ev.
+
+Felix:
+- Thymeleaf
+
+#### End of notes 2022-03-25
 
 ---
