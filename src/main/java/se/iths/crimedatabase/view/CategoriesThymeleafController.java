@@ -47,4 +47,11 @@ public class CategoriesThymeleafController {
         return mav;
     }
 
+    @GetMapping("/deleteCategory")
+    public String deleteCategory(@RequestParam Long id) {
+        service.delete(id);
+        return "redirect:/showCategories";
+    }
+
+
 }
