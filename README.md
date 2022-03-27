@@ -1,6 +1,7 @@
 # CrimeDatabase
-
+![Release](https://img.shields.io/github/v/release/Patlenlix/CrimeDatabase)
 ![repo_size](https://img.shields.io/github/repo-size/Patlenlix/CrimeDatabase)
+
 
 ## Java Enterprise | ITHS | JU21
 
