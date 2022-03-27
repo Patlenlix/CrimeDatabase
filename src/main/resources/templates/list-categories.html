@@ -16,11 +16,15 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="category: ${category}">
             <td th:text="${category.name}"></td>
+            <td>
+                <a th:href="@{/showUpdateForm(id=${category.id})}" class="btn btn-info">Update</a>
+            </td>
         </tr>
         </tbody>
     </table>
