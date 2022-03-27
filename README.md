@@ -1,14 +1,14 @@
-
 # CrimeDatabase
 
 ![repo_size](https://img.shields.io/github/repo-size/Patlenlix/CrimeDatabase)
 
 ## Java Enterprise | ITHS | JU21
 
-A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles have
-different degree of access throughout the application.
+A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles
+have different degree of access throughout the application.
 
-###  E/R diagram
+### E/R diagram
+
 ![ER Diagram](src/main/resources/image/ERdiagram.png)
 
 ---
@@ -30,7 +30,6 @@ different degree of access throughout the application.
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
 * MySQL database
 
-
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
 
 ---
@@ -39,20 +38,20 @@ different degree of access throughout the application.
 
 1. Clone/Fork this repo in your favorite IDE
 2. Install Docker Desktop
-3. Create and run RabbitMQ message broker image/container:
-   - Run command in
-     Console: `docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
-   - You can access management console at: `http://localhost:15672/`
-      - Username: guest
-      - Password: guest
-4. Build the image:
-    - Go to the folder of the application and run the following from your Console:
-      `docker image build -t crimedb .`
-5. Run the application: `docker container run --name crimedb -p 8080:8080 --link some-rabbit:some-rabbit crimedb`
-6. Use Insomnia to run the endpoints below
+3. Run the application:
+    - Go to the folder of the application and run the following from your Console: `docker-compose up`
+4. Use Insomnia to run the endpoints below
     - Use Basic Auth:
-        - Username: admin
-        - Password: admin123
+        - Admin:
+            - Username: admin
+            - Password: admin123
+        - User:
+            - Username: user
+            - Password: user123
+5. To access RabbitMQ console to manage messaging service
+    - Go to: `http://localhost:15672`
+        - Username: guest
+        - Password: guest
 
 ---
 
@@ -74,7 +73,7 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 ```json
 {
-   "name": "Theft"
+  "name": "Theft"
 }
 ```
 
@@ -92,9 +91,9 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 ```json
 {
-   "firstName": "John",
-   "lastName": "Doe",
-   "dateOfBirth": "2000-01-01"
+  "firstName": "John",
+  "lastName": "Doe",
+  "dateOfBirth": "2000-01-01"
 }
 ```
 
@@ -112,9 +111,9 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 ```json
 {
-   "firstName": "John",
-   "lastName": "Doe",
-   "dateOfBirth": "2000-01-01"
+  "firstName": "John",
+  "lastName": "Doe",
+  "dateOfBirth": "2000-01-01"
 }
 ```
 
@@ -132,9 +131,9 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 ```json
 {
-   "city": "Gothenburg",
-   "zipCode": "41324",
-   "streetAddress": "Street 1"
+  "city": "Gothenburg",
+  "zipCode": "41324",
+  "streetAddress": "Street 1"
 }
 ```
 
@@ -152,8 +151,8 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 ```json
 {
-   "name": "Example crime",
-   "time": "2022-03-18 15:48"
+  "name": "Example crime",
+  "time": "2022-03-18 15:48"
 }
 ```
 
@@ -167,6 +166,6 @@ POST needs a Body with a JSON object. Example of body for POST:
 
 ```json
 {
-   "message": "Sample message"
+  "message": "Sample message"
 }
 ```
