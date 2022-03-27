@@ -37,10 +37,13 @@ have different degree of access throughout the application.
 ### Deployment
 
 1. Clone/Fork this repo in your favorite IDE
-2. Install Docker Desktop
-3. Run the application:
-    - Go to the folder of the application and run the following from your Console: `docker-compose up`
-4. Use Insomnia to run the endpoints below
+    - Go to the folder where you want the application to save 
+    - Run the following from your Console: `git clone https://github.com/Patlenlix/CrimeDatabase.git`
+3. Install Docker Desktop
+4. Run the application:
+    - Go to the folder of the application 
+    - Run the following from your Console: `docker-compose up`
+5. Use Insomnia to run the endpoints below
     - Use Basic Auth:
         - Admin:
             - Username: admin
@@ -48,7 +51,7 @@ have different degree of access throughout the application.
         - User:
             - Username: user
             - Password: user123
-5. To access RabbitMQ console to manage messaging service
+6. To access RabbitMQ console to manage messaging service
     - Go to: `http://localhost:15672`
         - Username: guest
         - Password: guest
