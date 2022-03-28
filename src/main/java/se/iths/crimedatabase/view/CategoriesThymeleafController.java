@@ -14,8 +14,12 @@ import se.iths.crimedatabase.service.CategoryService;
 @Controller
 public class CategoriesThymeleafController {
 
+    private final CategoryService service;
+
     @Autowired
-    private CategoryService service;
+    public CategoriesThymeleafController(CategoryService service) {
+        this.service = service;
+    }
 
     @GetMapping("/showCategories")
     public ModelAndView showCategories() {
@@ -42,7 +46,7 @@ public class CategoriesThymeleafController {
     @GetMapping("/showUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("add-category-form");
-        Category existingCategory = service.findById(id).get();
+        Category existingCategory = service.findById(id).orElseThrow();
         mav.addObject("category", existingCategory);
         return mav;
     }

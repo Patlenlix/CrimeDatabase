@@ -9,35 +9,35 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
-<div class="container">
-    <h2>Show categories</h2>
-    <hr/>
-    <a th:href="@{/addCategoryForm}"class="btn btn-primary mb-2"> Add a new category</a>
-    <table class="table table-bordered table-striped" id="category-table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="category: ${category}">
-            <td th:text="${category.name}"></td>
-            <td>
-                <a th:href="@{/showUpdateForm(id=${category.id})}" class="btn btn-info">Update</a>
-                <a th:href="@{/deleteCategory(id=${category.id})}" class="btn btn-danger ml-2">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.js"></script>
-<script>
+    <body>
+        <div class="container">
+            <h2>Show categories</h2>
+                <hr/>
+                    <a th:href="@{/addCategoryForm}"class="btn btn-primary mb-2"> Add a new category</a>
+                <table class="table table-bordered table-striped" id="category-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr th:each="category: ${category}">
+                        <td th:text="${category.name}"></td>
+                        <td>
+                            <a th:href="@{/showUpdateForm(id=${category.id})}" class="btn btn-info">Update</a>
+                            <a th:href="@{/deleteCategory(id=${category.id})}" class="btn btn-danger ml-2">Delete</a>
+                         </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.js"></script>
+        <script>
         $(document).ready(function(){
         $("#category-table").DataTable();
         })
-</script>
-</body>
+        </script>
+    </body>
 </html>
