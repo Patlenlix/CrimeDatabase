@@ -24,22 +24,17 @@ class CategoryServiceTest {
     @InjectMocks
     private CategoryService service;
 
-    // CREATE
-    // When we call the create-method with a category,
-    // said category should be passes to the save method of the repository
     @Test
     void callingCreateShouldReturnTheCreatedCategory() {
-        Category category = new Category();
-        category.setName("Test").setId(1L);
+        Category category = new Category().setName("Test").setId(1L);
         when(repository.save(category)).thenReturn(category);
 
         Category createdCategory = service.create(category);
 
+        verify(repository, times(1)).save(category);
         assertThat(createdCategory).isEqualTo(category);
     }
 
-    // FIND ALL
-    // When we call the findAll-method a List of all categories should be returned.
     @Test
     void callingFindAllShouldReturnAllCategories() {
         List<Category> categories = List.of(
@@ -51,12 +46,10 @@ class CategoryServiceTest {
 
         Iterable<Category> foundCategories = service.findAll();
 
+        verify(repository, times(1)).findAll();
         assertThat(foundCategories).isEqualTo(categories);
     }
 
-    // FIND BY ID
-    // When we call the findById-method with an id an optional<category> should be returned. It contains a category with that id if it exists
-    // else it's empty.
     @Test
     void callingFindByIdShouldReturnAnOptionalWithCorrespondingCategoryIfPresent() {
         Long validId = 1L;
@@ -74,11 +67,8 @@ class CategoryServiceTest {
     }
 
 
-    // DELETE
-    // When we call the delete-method with an id, the category with that id should be deleted if it exists,
-    // else an EntityNotFoundException should be thrown.
     @Test
-    void callingDeleteWithAValidIdACategoryShouldBeDeletedElseExceptionShouldBeThrown() {
+    void callingDeleteWithAValidIShouldDeleteCategoryWithSaidIdElseExceptionShouldBeThrown() {
         Long validId = 1L;
         Long invalidId = 2L;
         Category category = new Category().setName("Test").setId(validId);
@@ -92,8 +82,6 @@ class CategoryServiceTest {
         assertThrows(EntityNotFoundException.class, () -> service.delete(invalidId));
     }
 
-    // UPDATE
-    // When we call the update-method with a category and id, the category with that id should be updated if it exists.
     @Test
     void callingUpdateWithACategoryAndAnIdSaidCategoryShouldBeUpdated() {
         Long Id = 1L;
