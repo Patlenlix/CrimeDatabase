@@ -66,9 +66,7 @@ version: '3.8'
 
 services:
     backend:
-        image: crimedb-image
-        container_name: crimedb
-        build: ghcr.io/patlenlix/crimedatabase:latest
+        image: ghcr.io/patlenlix/crimedatabase:latest
         ports:
             - "8080:8080"
         environment:
