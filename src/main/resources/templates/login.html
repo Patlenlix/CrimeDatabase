@@ -8,6 +8,9 @@
     </head>
     <body>
      <div class="container-fluid text-center">
+     <div>
+        <img th:src="@{/images/logo.png}" />
+     </div>
       <div th:if="${param.error}">
             <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
       </div>
