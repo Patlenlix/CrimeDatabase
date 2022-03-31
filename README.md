@@ -54,7 +54,7 @@ have different degree of access throughout the application.
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (and run it)
 2. Go to the folder of the application
-    - Run the following from your Console: `docker-compose up`
+    - Run the following from your Console: `docker-compose up`(If it doesn't work the first time, try to run it again).
 
 ### Alternative 2: Download docker image
 
