@@ -10,7 +10,7 @@ have different degree of access throughout the application.
 
 ## 1. E/R diagram
 
-![ER Diagram](src/main/resources/image/ERdiagram.png)
+![ER Diagram](src/main/resources/static/image/ERdiagram.png)
 
 ---
 
