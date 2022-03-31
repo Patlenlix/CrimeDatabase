@@ -65,24 +65,22 @@ have different degree of access throughout the application.
 version: '3.8'
 
 services:
-    backend:
-        image: crimedb-image
-        container_name: crimedb
-        build: ghcr.io/patlenlix/crimedatabase:latest
-        ports:
-            - "8080:8080"
-        environment:
-            - SPRING_RABBITMQ_HOST=rabbitmq
-        depends_on:
-            - rabbitmq
+  backend:
+    image: ghcr.io/patlenlix/crimedatabase:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - rabbitmq
 
-    rabbitmq:
-        image: rabbitmq:3-management
-        container_name: rabbitmq
-        restart: always
-        ports:
-            - "15672:15672"
-            - "5672:5672"
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
 ```
 
 **RUN APPLICATION: ALTERNATIVE 2**
