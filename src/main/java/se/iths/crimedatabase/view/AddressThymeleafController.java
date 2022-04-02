@@ -51,5 +51,10 @@ public class AddressThymeleafController {
         return mav;
     }
 
+    @GetMapping("/deleteAddress")
+    public String deleteAddress(@RequestParam Long id) {
+        service.delete(id);
+        return "redirect:/showAddresses";
+    }
 
 }
