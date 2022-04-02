@@ -10,5 +10,28 @@
           crossorigin="anonymous">
 </head>
     <body>
+        <div class="container">
+            <h2>Here can you add, update and change addresses</h2>
+                <hr/>
+            <thead>
+                <tr>
+                    <th>city</th>
+                    <th>zipCode</th>
+                    <th>streetAddress</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr th:each="address: ${addresses}">
+                        <td th:text="${address.city}"></td>
+                        <td th:text="${address.zipCode}"></td>
+                        <td th:text="${address.streetAddress}"></td>
+                        <td>
+                            <a th:href="@{/showAddressesUpdateForm(id=${address.id})}" class="btn btn-info">Update</a>
+                            <a th:href="@{/deleteAddress(id=${address.id})}" class="btn btn-danger ml-2">Delete</a>
+                         </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
     </body>
 </html>
