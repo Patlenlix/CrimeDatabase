@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.service.AddressService;
@@ -41,6 +42,14 @@ public class AddressThymeleafController {
         service.create(address);
         return "redirect:/showAddresses";
     }
-    
+
+    @GetMapping("/showAddressesUpdateForm")
+    public ModelAndView showAddressesUpdateForm(@RequestParam Long id) {
+        ModelAndView mav = new ModelAndView("add-addresses-form");
+        Address address = service.findById(id).orElseThrow();
+        mav.addObject("address", address);
+        return mav;
+    }
+
 
 }
