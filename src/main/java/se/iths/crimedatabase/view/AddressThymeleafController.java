@@ -3,6 +3,8 @@ package se.iths.crimedatabase.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.service.AddressService;
@@ -32,6 +34,12 @@ public class AddressThymeleafController {
         Address address = new Address();
         mav.addObject("address", address);
         return mav;
+    }
+
+    @PostMapping("/saveAddress")
+    public String saveAddresses(@ModelAttribute Address address) {
+        service.create(address);
+        return "redirect:/showAddresses";
     }
     
 
