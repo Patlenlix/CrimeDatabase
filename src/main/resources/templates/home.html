@@ -13,10 +13,20 @@
             <div class="p-3 mb-2 bg-dark text-white">
                 <div class="row">
                     <div class="col">
-                    <h1 style="text-align:center">Crime Database</h1>
+                    <h1 style="text-align:center">Crime database</h1>
                 </div>
             </div>
         </div>
-   </div>
+        <div class="card-group">
+        <img src="images/police.png" class="rounded mx-auto d-block"/>
+            <div class="card">
+                <div class="card-body">
+                     <img src="images/category.png" class="card-img-top">
+                        <h4 class="card-title">Categories</h4>
+                        <p class="card-text">Here you can handle different crime categories</p>
+                        <a th:href="@{/showCategories}" class="btn btn-primary">Category</a>
+                </div>
+            </div>
+       </div>
   </body>
 </html
