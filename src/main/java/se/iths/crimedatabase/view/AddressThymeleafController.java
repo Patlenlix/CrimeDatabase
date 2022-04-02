@@ -26,5 +26,13 @@ public class AddressThymeleafController {
         return mav;
     }
 
+    @GetMapping("/addAddressesForm")
+    public ModelAndView addAddressesForm() {
+        ModelAndView mav = new ModelAndView("add-addresses-form");
+        Address address = new Address();
+        mav.addObject("address", address);
+        return mav;
+    }
+    
 
 }
