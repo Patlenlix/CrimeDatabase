@@ -29,19 +29,14 @@ public class SecurityTest {
 
     @MockBean
     private CriminalService criminalService;
-
     @MockBean
     private CategoryService categoryService;
-
     @MockBean
     private AddressService addressService;
-
     @MockBean
     private CrimeService crimeService;
-
     @MockBean
     private VictimService victimService;
-
     @MockBean
     private UserRepository userRepository;
 
@@ -69,11 +64,11 @@ public class SecurityTest {
 
             mockMvc.perform(get("/users")).andExpect(status().isOk());
         }
+
     }
 
     @Nested
     class Victims {
-
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
             mockMvc.perform(get("/victims"))
@@ -90,13 +85,13 @@ public class SecurityTest {
         @WithMockUser(roles = {"ADMIN"})
         @Test
         void whenAdminAndRequestOnSecuredEndpointOnlyForAdminsThenSuccessWith201() throws Exception {
-            Iterable<Victim> victims = List.of(
-                    new Victim().setFirstName("Jane").setLastName("Doe"));
+            Iterable<Victim> victims = List.of(new Victim());
 
             when(victimService.findAll()).thenReturn(victims);
 
             mockMvc.perform(get("/victims")).andExpect(status().isOk());
         }
+
     }
 
     @Nested
@@ -110,12 +105,13 @@ public class SecurityTest {
         @WithMockUser()
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
-            Iterable<Crime> crimes = List.of(new Crime().setName("Example"));
+            Iterable<Crime> crimes = List.of(new Crime());
 
             when(crimeService.findAll()).thenReturn(crimes);
 
             mockMvc.perform(get("/crimes")).andExpect(status().isOk());
         }
+
     }
 
     @Nested
@@ -129,18 +125,17 @@ public class SecurityTest {
         @WithMockUser()
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
-            Iterable<Address> addresses = List.of(
-                    new Address().setCity("Gothenburg").setStreetAddress("Example 5").setZipCode("11111"));
+            Iterable<Address> addresses = List.of(new Address());
 
             when(addressService.findAll()).thenReturn(addresses);
 
             mockMvc.perform(get("/addresses")).andExpect(status().isOk());
         }
+
     }
 
     @Nested
     class Criminals {
-
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
             mockMvc.perform(get("/criminals"))
@@ -157,19 +152,17 @@ public class SecurityTest {
         @WithMockUser(roles = {"ADMIN"})
         @Test
         void whenAdminAndRequestOnSecuredEndpointOnlyForAdminsThenSuccessWith201() throws Exception {
-            Iterable<Criminal> criminals = List.of(
-                    new Criminal().setFirstName("Jane").setLastName("Doe"),
-                    new Criminal().setFirstName("John").setLastName("Doe"));
+            Iterable<Criminal> criminals = List.of(new Criminal());
 
             when(criminalService.findAll()).thenReturn(criminals);
 
             mockMvc.perform(get("/criminals")).andExpect(status().isOk());
         }
+
     }
 
     @Nested
     class Categories {
-
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
             mockMvc.perform(get("/categories"))
@@ -179,11 +172,14 @@ public class SecurityTest {
         @WithMockUser()
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
-            Iterable<Category> categories = List.of(new Category().setName("test"));
+            Iterable<Category> categories = List.of(new Category());
 
             when(categoryService.findAll()).thenReturn(categories);
 
             mockMvc.perform(get("/categories")).andExpect(status().isOk());
         }
+
     }
+
 }
+
