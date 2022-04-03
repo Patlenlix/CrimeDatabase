@@ -10,6 +10,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import se.iths.crimedatabase.controller.*;
 import se.iths.crimedatabase.entity.*;
+import se.iths.crimedatabase.repository.UserRepository;
 import se.iths.crimedatabase.security.SecurityConfig;
 import se.iths.crimedatabase.service.*;
 
@@ -20,9 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Import({SecurityConfig.class})
-@WebMvcTest({CriminalController.class, CategoryController.class,
-        AddressController.class, CrimeController.class,
-        VictimController.class})
+@WebMvcTest({CriminalController.class, CategoryController.class, AddressController.class,
+        CrimeController.class, VictimController.class, UserController.class})
 public class SecurityTest {
     @Autowired
     private MockMvc mockMvc;
@@ -41,6 +41,35 @@ public class SecurityTest {
 
     @MockBean
     private VictimService victimService;
+
+    @MockBean
+    private UserRepository userRepository;
+
+    @Nested
+    class Users {
+        @Test
+        void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
+            mockMvc.perform(get("/users"))
+                    .andExpect(status().isUnauthorized());
+        }
+
+        @WithMockUser()
+        @Test
+        void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
+            mockMvc.perform(get("/users"))
+                    .andExpect(status().isForbidden());
+        }
+
+        @WithMockUser(roles = {"ADMIN"})
+        @Test
+        void whenAdminAndRequestOnSecuredEndpointOnlyForAdminsThenSuccessWith201() throws Exception {
+            List<User> users = List.of(new User());
+
+            when(userRepository.findAll()).thenReturn(users);
+
+            mockMvc.perform(get("/users")).andExpect(status().isOk());
+        }
+    }
 
     @Nested
     class Victims {
