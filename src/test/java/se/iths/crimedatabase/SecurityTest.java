@@ -129,8 +129,8 @@ public class SecurityTest {
         @Test
         void whenAdminAndRequestOnSecuredEndpointOnlyForAdminsThenSuccessWith201() throws Exception {
             Iterable<Criminal> criminals = List.of(
-                    new Criminal().setLastName("Jane").setLastName("Doe"),
-                    new Criminal().setLastName("John").setLastName("Doe"));
+                    new Criminal().setFirstName("Jane").setLastName("Doe"),
+                    new Criminal().setFirstName("John").setLastName("Doe"));
 
             when(criminalService.findAll()).thenReturn(criminals);
 
