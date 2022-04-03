@@ -20,7 +20,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,7 +39,6 @@ class CategoryWebLayerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //1.  Verifying HTTP Request Matching
     @Test
     @WithMockUser
     void verifyingHttpRequestMatchingForGetAll() throws Exception {
@@ -61,18 +61,6 @@ class CategoryWebLayerTest {
 
     @Test
     @WithMockUser
-    void verifyingHttpRequestMatchingForDelete() throws Exception {
-        Long id = 1L;
-        when(service.findById(id)).thenReturn(Optional.of(new Category(id, "Test")));
-        doNothing().when(service).delete(id);
-
-        mockMvc.perform(delete("/categories/{id}", id))
-                .andExpect(status().isOk());
-    }
-
-    // 2. Verifying Input Deserialization
-    @Test
-    @WithMockUser
     void verifyingInputDeserialization() throws Exception {
         Category category = new Category(1L, "Test");
         when(service.create(category)).thenReturn(category);
@@ -84,10 +72,6 @@ class CategoryWebLayerTest {
 
     }
 
-    // 3. Verifying Input Validation - we do not have any input validation
-
-
-    // 4. Verifying Business Logic Calls
     @Test
     @WithMockUser
     void verifyingBusinessLogicCalls() throws Exception {
@@ -104,7 +88,6 @@ class CategoryWebLayerTest {
         assertThat(categoryCaptor.getValue().getId()).isEqualTo(1L);
     }
 
-    // 5. Verifying Output Serialization
     @Test
     @WithMockUser
     void verifyingOutputSerialization() throws Exception {
@@ -117,10 +100,9 @@ class CategoryWebLayerTest {
                 .andExpect(jsonPath("$.name").value("Test"));
     }
 
-    // 6. Verifying Exception Handling
     @Test
     @WithMockUser
-    void verifyingInputValidation() throws Exception {
+    void verifyingExceptionHandling() throws Exception {
         Category category = new Category(1L, "");
         when(service.create(category)).thenReturn(category);
 
