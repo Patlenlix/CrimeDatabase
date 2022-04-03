@@ -53,7 +53,7 @@ public class CrimeController {
         if (!crimes.iterator().hasNext())
             throw new NotFoundException("No crimes found");
 
-        return new ResponseEntity<>(crimes, HttpStatus.FOUND);
+        return new ResponseEntity<>(crimes, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
