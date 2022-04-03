@@ -14,10 +14,12 @@ import se.iths.crimedatabase.controller.CrimeController;
 import se.iths.crimedatabase.controller.CriminalController;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.entity.Category;
+import se.iths.crimedatabase.entity.Crime;
 import se.iths.crimedatabase.entity.Criminal;
 import se.iths.crimedatabase.security.SecurityConfig;
 import se.iths.crimedatabase.service.AddressService;
 import se.iths.crimedatabase.service.CategoryService;
+import se.iths.crimedatabase.service.CrimeService;
 import se.iths.crimedatabase.service.CriminalService;
 
 import java.util.List;
@@ -40,6 +42,28 @@ public class SecurityTest {
 
     @MockBean
     private AddressService addressService;
+
+    @MockBean
+    private CrimeService crimeService;
+
+    @Nested
+    class Crimes {
+        @Test
+        void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
+            mockMvc.perform(get("/crimes"))
+                    .andExpect(status().isUnauthorized());
+        }
+
+        @WithMockUser()
+        @Test
+        void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
+            Iterable<Crime> crimes = List.of(new Crime().setName("Example"));
+
+            when(crimeService.findAll()).thenReturn(crimes);
+
+            mockMvc.perform(get("/crimes")).andExpect(status().isOk());
+        }
+    }
 
     @Nested
     class Addresses {
