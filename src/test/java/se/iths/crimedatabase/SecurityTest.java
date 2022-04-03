@@ -8,19 +8,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import se.iths.crimedatabase.controller.AddressController;
-import se.iths.crimedatabase.controller.CategoryController;
-import se.iths.crimedatabase.controller.CrimeController;
-import se.iths.crimedatabase.controller.CriminalController;
-import se.iths.crimedatabase.entity.Address;
-import se.iths.crimedatabase.entity.Category;
-import se.iths.crimedatabase.entity.Crime;
-import se.iths.crimedatabase.entity.Criminal;
+import se.iths.crimedatabase.controller.*;
+import se.iths.crimedatabase.entity.*;
 import se.iths.crimedatabase.security.SecurityConfig;
-import se.iths.crimedatabase.service.AddressService;
-import se.iths.crimedatabase.service.CategoryService;
-import se.iths.crimedatabase.service.CrimeService;
-import se.iths.crimedatabase.service.CriminalService;
+import se.iths.crimedatabase.service.*;
 
 import java.util.List;
 
@@ -29,7 +20,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Import({SecurityConfig.class})
-@WebMvcTest({CriminalController.class, CategoryController.class, AddressController.class, CrimeController.class})
+@WebMvcTest({CriminalController.class, CategoryController.class,
+        AddressController.class, CrimeController.class,
+        VictimController.class})
 public class SecurityTest {
     @Autowired
     private MockMvc mockMvc;
@@ -45,6 +38,37 @@ public class SecurityTest {
 
     @MockBean
     private CrimeService crimeService;
+
+    @MockBean
+    private VictimService victimService;
+
+    @Nested
+    class Victims {
+
+        @Test
+        void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
+            mockMvc.perform(get("/victims"))
+                    .andExpect(status().isUnauthorized());
+        }
+
+        @WithMockUser()
+        @Test
+        void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
+            mockMvc.perform(get("/victims"))
+                    .andExpect(status().isForbidden());
+        }
+
+        @WithMockUser(roles = {"ADMIN"})
+        @Test
+        void whenAdminAndRequestOnSecuredEndpointOnlyForAdminsThenSuccessWith201() throws Exception {
+            Iterable<Victim> victims = List.of(
+                    new Victim().setFirstName("Jane").setLastName("Doe"));
+
+            when(victimService.findAll()).thenReturn(victims);
+
+            mockMvc.perform(get("/victims")).andExpect(status().isOk());
+        }
+    }
 
     @Nested
     class Crimes {
