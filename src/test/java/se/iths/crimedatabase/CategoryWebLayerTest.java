@@ -60,17 +60,6 @@ class CategoryWebLayerTest {
     }
 
     @Test
-    void givenNoAuthRequestOnSecuredEndpoint_shouldFailWith401() throws Exception {
-        Long id = 1L;
-        Category category = new Category(id, "Test");
-        when(service.findById(id)).thenReturn(Optional.of(category));
-
-        mockMvc.perform(get("/categories/{id}", 1L))
-                .andExpect(status().isUnauthorized());
-    }
-
-
-    @Test
     @WithMockUser
     void verifyingHttpRequestMatchingForDelete() throws Exception {
         Long id = 1L;
