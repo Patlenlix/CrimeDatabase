@@ -17,19 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/images/**").permitAll()
-                .antMatchers("/showCrimes").hasRole("ADMIN")
-                .antMatchers("/showUsers").hasRole("ADMIN")
-                .antMatchers("/showCategories").hasRole("ADMIN")
-                .antMatchers("/showVictims").hasRole("ADMIN")
-                .antMatchers("/showCriminals").hasRole("ADMIN")
-                .antMatchers("/showAddresses").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().usernameParameter("username")
+                .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().invalidateHttpSession(true)
-                .clearAuthentication(true)
+                .logout()
                 .permitAll();
     }
 
