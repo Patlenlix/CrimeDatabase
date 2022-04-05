@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import se.iths.crimedatabase.controller.*;
 import se.iths.crimedatabase.entity.*;
 import se.iths.crimedatabase.repository.UserRepository;
-import se.iths.crimedatabase.security.SecurityConfig;
+import se.iths.crimedatabase.security.SecurityConfigAPI;
 import se.iths.crimedatabase.service.*;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Import({SecurityConfig.class})
+@Import({SecurityConfigAPI.class})
 @WebMvcTest({CriminalController.class, CategoryController.class, AddressController.class,
         CrimeController.class, VictimController.class, UserController.class})
 public class SecurityTest {
@@ -44,14 +44,14 @@ public class SecurityTest {
     class Users {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/users"))
+            mockMvc.perform(get("/api/users"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
         @Test
         void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
-            mockMvc.perform(get("/users"))
+            mockMvc.perform(get("/api/users"))
                     .andExpect(status().isForbidden());
         }
 
@@ -62,7 +62,7 @@ public class SecurityTest {
 
             when(userRepository.findAll()).thenReturn(users);
 
-            mockMvc.perform(get("/users")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/users")).andExpect(status().isOk());
         }
 
     }
@@ -71,14 +71,14 @@ public class SecurityTest {
     class Victims {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/victims"))
+            mockMvc.perform(get("/api/victims"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
         @Test
         void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
-            mockMvc.perform(get("/victims"))
+            mockMvc.perform(get("/api/victims"))
                     .andExpect(status().isForbidden());
         }
 
@@ -89,7 +89,7 @@ public class SecurityTest {
 
             when(victimService.findAll()).thenReturn(victims);
 
-            mockMvc.perform(get("/victims")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/victims")).andExpect(status().isOk());
         }
 
     }
@@ -98,18 +98,25 @@ public class SecurityTest {
     class Crimes {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/crimes"))
+            mockMvc.perform(get("/api/crimes"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
+        @Test
+        void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
+            mockMvc.perform(get("/api/crimes"))
+                    .andExpect(status().isForbidden());
+        }
+
+        @WithMockUser(roles = {"ADMIN"})
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
             Iterable<Crime> crimes = List.of(new Crime());
 
             when(crimeService.findAll()).thenReturn(crimes);
 
-            mockMvc.perform(get("/crimes")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/crimes")).andExpect(status().isOk());
         }
 
     }
@@ -118,18 +125,25 @@ public class SecurityTest {
     class Addresses {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/addresses"))
+            mockMvc.perform(get("/api/addresses"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
+        @Test
+        void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
+            mockMvc.perform(get("/api/addresses"))
+                    .andExpect(status().isForbidden());
+        }
+
+        @WithMockUser(roles = {"ADMIN"})
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
             Iterable<Address> addresses = List.of(new Address());
 
             when(addressService.findAll()).thenReturn(addresses);
 
-            mockMvc.perform(get("/addresses")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/addresses")).andExpect(status().isOk());
         }
 
     }
@@ -138,14 +152,14 @@ public class SecurityTest {
     class Criminals {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/criminals"))
+            mockMvc.perform(get("/api/criminals"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
         @Test
         void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
-            mockMvc.perform(get("/criminals"))
+            mockMvc.perform(get("/api/criminals"))
                     .andExpect(status().isForbidden());
         }
 
@@ -156,7 +170,7 @@ public class SecurityTest {
 
             when(criminalService.findAll()).thenReturn(criminals);
 
-            mockMvc.perform(get("/criminals")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/criminals")).andExpect(status().isOk());
         }
 
     }
@@ -165,18 +179,25 @@ public class SecurityTest {
     class Categories {
         @Test
         void whenUnauthorizedAndRequestOnSecuredEndpointThenFailWith401() throws Exception {
-            mockMvc.perform(get("/categories"))
+            mockMvc.perform(get("/api/categories"))
                     .andExpect(status().isUnauthorized());
         }
 
         @WithMockUser()
+        @Test
+        void whenUserAndRequestOnSecuredEndpointOnlyForAdminThenFailWith403() throws Exception {
+            mockMvc.perform(get("/api/categories"))
+                    .andExpect(status().isForbidden());
+        }
+
+        @WithMockUser(roles = {"ADMIN"})
         @Test
         void whenAuthorizedAndRequestOnSecuredEndpointThenSuccessWith201() throws Exception {
             Iterable<Category> categories = List.of(new Category());
 
             when(categoryService.findAll()).thenReturn(categories);
 
-            mockMvc.perform(get("/categories")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/categories")).andExpect(status().isOk());
         }
 
     }
