@@ -40,4 +40,8 @@ public class User {
     public String getRole() {
         return role;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

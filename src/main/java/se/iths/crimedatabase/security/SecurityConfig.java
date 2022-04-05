@@ -11,22 +11,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final String[] urls = {"/addresses", "/categories", "/crimes", "/criminals", "/users", "/victims", "/publish"};
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .ignoringAntMatchers(urls)
-                .and()
-                .httpBasic()
-                .and()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/criminals").hasRole("ADMIN")
                 .antMatchers("/victims").hasRole("ADMIN")
                 .antMatchers("/users").hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .antMatchers("/images/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Bean
