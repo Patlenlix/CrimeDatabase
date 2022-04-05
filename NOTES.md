@@ -137,8 +137,40 @@ Helena:
 - Form based security ev.
 
 Felix:
+
 - Thymeleaf
 
 #### End of notes 2022-03-25
+
+---
+
+# Projektmöte 5 - 2022-04-04
+
+Vi kollade på form login och kom fram till en bra lösning. Felix presenterade även sitt jobb med thymeleaf och vi
+planerade det fortsätta arbetet med detta. Felix har skapat olika thymeleaf templates som övriga ska göra reviews på.
+Det fanns några problem med thymeleaf som vi ska försöka lösa i veckan (problem när man via hemsidan vill uppdatera
+data). Vi kikade även lite snabbt på de tester Helena jobbat med. Allt fungerade bra tills vi la till form login, nu
+behöver testerna omarbetas lite (tidigare unauthorized blir nu redirected). Vi kom fram till att vi ska lägga fokus på
+de delar vi har igång och inte börja med något nytt denna veckan. Vi bestämde därför att inte vidareutveckla JMS vilket
+var tanken från början. Om vi har tid över senare i veckan planerar vi att byta från H2 till MySQL.
+
+### ATT GÖRA
+
+Patrik:
+
+- Slutföra rapport
+- Uppdatera README.md
+- Se till att vi får rapport för våra tester
+
+Helena:
+
+- Fixa problem med tester
+- Kolla på thymeleaf (reviews)
+
+Felix:
+
+- Jobba vidare med thymeleaf och försöka komma på lösning till nuvarande problem.
+
+#### End of notes 2022-04-04
 
 ---
