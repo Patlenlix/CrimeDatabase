@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.entity.Crime;
@@ -51,6 +52,14 @@ public class CriminalsThymeleafController {
     public String saveCriminal(@ModelAttribute Criminal criminal) {
         service.create(criminal);
         return "redirect:/criminals";
+    }
+
+    @GetMapping("/criminalUpdateForm")
+    public ModelAndView showUpdateForm(@RequestParam Long id) {
+        ModelAndView mav = new ModelAndView("add-criminal-form");
+        Criminal criminal = service.findById(id).orElseThrow();
+        mav.addObject("criminal", criminal);
+        return mav;
     }
     
 
