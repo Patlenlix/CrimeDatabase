@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk-17-slim as build
+FROM maven:3.8.5-openjdk-17-slim as build
 COPY ./ /src
 RUN mvn -f /src/pom.xml clean package
 
