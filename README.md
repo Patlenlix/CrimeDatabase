@@ -107,7 +107,7 @@ services:
 
 ## 4. Endpoints
 
-All URLs start with `http://localhost:8080`
+All URLs for our API start with `http://localhost:8080/api`
 
 #### Category:
 
