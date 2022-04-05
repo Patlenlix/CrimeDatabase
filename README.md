@@ -111,13 +111,13 @@ All URLs for our API start with `http://localhost:8080/api`
 
 #### Category:
 
-| HTTP-verb | URL              | Authorization           | Info                            |
-|-----------|------------------|-------------------------|---------------------------------|
-| POST      | /categories      | All authenticated users | Creates category                |
-| DELETE    | /categories/{id} | All authenticated users | Deletes category with id = {id} |
-| GET       | /categories/{id} | All authenticated users | Returns category with id = {id} |
-| GET       | /categories      | All authenticated users | Returns all categories          |
-| PUT       | /categories/{id} | All authenticated users | Updates category with id = {id} |
+| HTTP-verb | URL              | Authorization                        | Info                            |
+|-----------|------------------|--------------------------------------|---------------------------------|
+| POST      | /categories      | Authenticated users with role ADMIN  | Creates category                |
+| DELETE    | /categories/{id} | Authenticated users with role ADMIN  | Deletes category with id = {id} |
+| GET       | /categories/{id} | Authenticated users with role ADMIN  | Returns category with id = {id} |
+| GET       | /categories      | Authenticated users with role ADMIN  | Returns all categories          |
+| PUT       | /categories/{id} | Authenticated users with role ADMIN  | Updates category with id = {id} |
 
 POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
 
@@ -169,13 +169,13 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 #### Address:
 
-| HTTP-verb | URL                | Authorization           | Info                           |
-|-----------|--------------------|-------------------------|--------------------------------|
-| POST      | /addresses         | All authenticated users | Creates address                |
-| DELETE    | /addresses/{id}    | All authenticated users | Deletes address with id = {id} |
-| GET       | /addresses/{id}    | All authenticated users | Returns address with id = {id} |
-| GET       | /addresses         | All authenticated users | Returns all addresses          |
-| PUT       | /addresses/{id}    | All authenticated users | Updates address with id = {id} |
+| HTTP-verb | URL                | Authorization                       | Info                           |
+|-----------|--------------------|-------------------------------------|--------------------------------|
+| POST      | /addresses         | Authenticated users with role ADMIN | Creates address                |
+| DELETE    | /addresses/{id}    | Authenticated users with role ADMIN | Deletes address with id = {id} |
+| GET       | /addresses/{id}    | Authenticated users with role ADMIN | Returns address with id = {id} |
+| GET       | /addresses         | Authenticated users with role ADMIN | Returns all addresses          |
+| PUT       | /addresses/{id}    | Authenticated users with role ADMIN | Updates address with id = {id} |
 
 POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
 
@@ -189,13 +189,13 @@ POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also
 
 #### Crime:
 
-| HTTP-verb | URL              | Authorization           | Info                           |
-|-----------|------------------|-------------------------|--------------------------------|
-| POST      | /crimes          | All authenticated users | Creates crime                  |
-| DELETE    | /crimes/{id}     | All authenticated users | Deletes crime with id = {id}   |
-| GET       | /crimes/{id}     | All authenticated users | Returns crime with id = {id}   |
-| GET       | /crimes          | All authenticated users | Returns all crimes             |
-| PUT       | /crimes/{id}     | All authenticated users | Updates crime with id = {id}   |
+| HTTP-verb | URL              | Authorization                        | Info                           |
+|-----------|------------------|--------------------------------------|--------------------------------|
+| POST      | /crimes          | Authenticated users with role ADMIN  | Creates crime                  |
+| DELETE    | /crimes/{id}     | Authenticated users with role ADMIN  | Deletes crime with id = {id}   |
+| GET       | /crimes/{id}     | Authenticated users with role ADMIN  | Returns crime with id = {id}   |
+| GET       | /crimes          | Authenticated users with role ADMIN  | Returns all crimes             |
+| PUT       | /crimes/{id}     | Authenticated users with role ADMIN  | Updates crime with id = {id}   |
 
 POST and PUT needs a Body with a JSON object. Example of body for POST (PUT also needs id):
 
