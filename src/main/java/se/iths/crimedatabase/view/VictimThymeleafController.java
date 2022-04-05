@@ -3,6 +3,8 @@ package se.iths.crimedatabase.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import se.iths.crimedatabase.entity.Address;
 import se.iths.crimedatabase.entity.Crime;
@@ -43,6 +45,12 @@ public class VictimThymeleafController {
         mav.addObject("listAddresses", listAddresses);
         mav.addObject("listCrimes", listCrimes);
         return mav;
+    }
+
+    @PostMapping("/saveVictim")
+    public String saveVictim(@ModelAttribute Victim victim) {
+        victimService.create(victim);
+        return "redirect:/victims";
     }
 
 
