@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import se.iths.crimedatabase.entity.Address;
+import se.iths.crimedatabase.entity.Crime;
 import se.iths.crimedatabase.entity.Victim;
 import se.iths.crimedatabase.service.AddressService;
 import se.iths.crimedatabase.service.CrimeService;
@@ -30,5 +32,18 @@ public class VictimThymeleafController {
         mav.addObject("victims", allVictims);
         return mav;
     }
-    
+
+    @GetMapping("/addVictimForm")
+    public ModelAndView addVictimForm() {
+        ModelAndView mav = new ModelAndView("add-victim-form");
+        Iterable<Crime> listCrimes = crimeService.findAll();
+        Iterable<Address> listAddresses = addressService.findAll();
+        Victim newVictim = new Victim();
+        mav.addObject("victim", newVictim);
+        mav.addObject("listAddresses", listAddresses);
+        mav.addObject("listCrimes", listCrimes);
+        return mav;
+    }
+
+
 }
