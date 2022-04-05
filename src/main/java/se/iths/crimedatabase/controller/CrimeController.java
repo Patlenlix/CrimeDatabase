@@ -12,7 +12,7 @@ import se.iths.crimedatabase.service.CrimeService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("crimes")
+@RequestMapping("api/crimes")
 public class CrimeController {
     private final CrimeService crimeService;
 

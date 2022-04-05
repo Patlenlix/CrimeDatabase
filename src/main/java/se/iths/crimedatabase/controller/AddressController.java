@@ -12,7 +12,7 @@ import se.iths.crimedatabase.service.AddressService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("addresses")
+@RequestMapping("api/addresses")
 public class AddressController {
     private final AddressService addressService;
 

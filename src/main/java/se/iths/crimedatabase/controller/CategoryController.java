@@ -12,7 +12,7 @@ import se.iths.crimedatabase.service.CategoryService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("categories")
+@RequestMapping("api/categories")
 public class CategoryController {
     private final CategoryService categoryService;
 
