@@ -17,7 +17,7 @@ public class UserThymeleafController {
         this.service = service;
     }
 
-    @GetMapping("/showUsers")
+    @GetMapping("/users")
     public ModelAndView showUsers() {
         ModelAndView mav = new ModelAndView("list-users");
         Iterable<User> allUsers = service.findAll();

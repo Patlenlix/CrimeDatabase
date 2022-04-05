@@ -28,7 +28,7 @@
                         <td th:text="${address.zipCode}"></td>
                         <td th:text="${address.streetAddress}"></td>
                         <td>
-                            <a th:href="@{/showAddressesUpdateForm(id=${address.id})}" class="btn btn-info">Update</a>
+                            <a th:href="@{/addressesUpdateForm(id=${address.id})}" class="btn btn-info">Update</a>
                             <a th:href="@{/deleteAddress(id=${address.id})}" class="btn btn-danger ml-2">Delete</a>
                          </td>
                     </tr>

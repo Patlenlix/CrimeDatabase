@@ -21,7 +21,7 @@ public class AddressThymeleafController {
         this.service = service;
     }
 
-    @GetMapping("/showAddresses")
+    @GetMapping("/addresses")
     public ModelAndView showAddresses() {
         ModelAndView mav = new ModelAndView("list-addresses");
         Iterable<Address> allAddresses = service.findAll();
@@ -40,10 +40,10 @@ public class AddressThymeleafController {
     @PostMapping("/saveAddress")
     public String saveAddresses(@ModelAttribute Address address) {
         service.create(address);
-        return "redirect:/showAddresses";
+        return "redirect:/addresses";
     }
 
-    @GetMapping("/showAddressesUpdateForm")
+    @GetMapping("/addressesUpdateForm")
     public ModelAndView showAddressesUpdateForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("add-addresses-form");
         Address address = service.findById(id).orElseThrow();
@@ -54,7 +54,7 @@ public class AddressThymeleafController {
     @GetMapping("/deleteAddress")
     public String deleteAddress(@RequestParam Long id) {
         service.delete(id);
-        return "redirect:/showAddresses";
+        return "redirect:/addresses";
     }
 
 }
