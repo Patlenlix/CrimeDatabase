@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import se.iths.crimedatabase.entity.User;
 import se.iths.crimedatabase.repository.UserRepository;
 
-import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        User foundUser = userRepository.findById(id).orElseThrow(EntityExistsException::new);
+        User foundUser = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         userRepository.deleteById(foundUser.getId());
     }
 
