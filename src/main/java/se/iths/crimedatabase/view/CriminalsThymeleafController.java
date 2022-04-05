@@ -3,7 +3,11 @@ package se.iths.crimedatabase.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import se.iths.crimedatabase.entity.Address;
+import se.iths.crimedatabase.entity.Crime;
 import se.iths.crimedatabase.entity.Criminal;
 import se.iths.crimedatabase.service.AddressService;
 import se.iths.crimedatabase.service.CrimeService;
@@ -30,5 +34,24 @@ public class CriminalsThymeleafController {
         mav.addObject("criminals", allCriminals);
         return mav;
     }
+
+    @GetMapping("/addCriminalForm")
+    public ModelAndView addCategoryForm() {
+        ModelAndView mav = new ModelAndView("add-criminal-form");
+        Iterable<Crime> listCrimes = crimeService.findAll();
+        Iterable<Address> listAddresses = addressService.findAll();
+        Criminal newCriminal = new Criminal();
+        mav.addObject("listAddresses", listAddresses);
+        mav.addObject("listCrimes", listCrimes);
+        mav.addObject("criminal", newCriminal);
+        return mav;
+    }
+
+    @PostMapping("/saveCriminal")
+    public String saveCriminal(@ModelAttribute Criminal criminal) {
+        service.create(criminal);
+        return "redirect:/criminals";
+    }
     
+
 }
