@@ -61,5 +61,10 @@ public class VictimThymeleafController {
         mav.addObject("victim", victim);
         return mav;
     }
-    
+
+    @GetMapping("/deleteVictim")
+    public String deleteVictim(@RequestParam Long id) {
+        victimService.delete(id);
+        return "redirect:/victims";
+    }
 }
