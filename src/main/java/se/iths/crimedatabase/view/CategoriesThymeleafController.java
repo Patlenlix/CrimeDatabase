@@ -21,7 +21,7 @@ public class CategoriesThymeleafController {
         this.service = service;
     }
 
-    @GetMapping("/showCategories")
+    @GetMapping("/categories")
     public ModelAndView showCategories() {
         ModelAndView mav = new ModelAndView("list-categories");
         Iterable<Category> allCategories = service.findAll();
@@ -40,10 +40,10 @@ public class CategoriesThymeleafController {
     @PostMapping("/saveCategory")
     public String saveEmployee(@ModelAttribute Category category) {
         service.create(category);
-        return "redirect:/showCategories";
+        return "redirect:/categories";
     }
 
-    @GetMapping("/showUpdateForm")
+    @GetMapping("/categoriesUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("add-category-form");
         Category existingCategory = service.findById(id).orElseThrow();
@@ -54,7 +54,7 @@ public class CategoriesThymeleafController {
     @GetMapping("/deleteCategory")
     public String deleteCategory(@RequestParam Long id) {
         service.delete(id);
-        return "redirect:/showCategories";
+        return "redirect:/categories";
     }
 
 
