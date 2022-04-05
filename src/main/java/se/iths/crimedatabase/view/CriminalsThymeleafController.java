@@ -2,6 +2,9 @@ package se.iths.crimedatabase.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import se.iths.crimedatabase.entity.Criminal;
 import se.iths.crimedatabase.service.AddressService;
 import se.iths.crimedatabase.service.CrimeService;
 import se.iths.crimedatabase.service.CriminalService;
@@ -19,6 +22,13 @@ public class CriminalsThymeleafController {
         this.crimeService = crimeService;
         this.addressService = addressService;
     }
-    
 
+    @GetMapping("/criminals")
+    public ModelAndView showCriminals() {
+        ModelAndView mav = new ModelAndView("list-criminals");
+        Iterable<Criminal> allCriminals = service.findAll();
+        mav.addObject("criminals", allCriminals);
+        return mav;
+    }
+    
 }
