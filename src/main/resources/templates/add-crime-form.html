@@ -34,7 +34,7 @@
         <div class="col-sm-8">
             <select class="form-control" th:field="*{criminals}">
                 <option selected th:value="0"></option>
-                <option th:each="criminal: ${listCriminals}" th:text="${criminal.firstName}"
+                <option th:each="criminal: ${listCriminals}" th:text="${criminal.firstName + ' ' + criminal.lastName}"
                         th:value="${criminal.id}"></option>
             </select>
         </div>
@@ -43,7 +43,8 @@
         <div class="col-sm-8">
             <select class="form-control" th:field="*{victims}">
                 <option selected th:value="0"></option>
-                <option th:each="victim: ${listVictims}" th:text="${victim.firstName}" th:value="${victim.id}"></option>
+                <option th:each="victim: ${listVictims}" th:text="${victim.firstName + ' ' + victim.lastName}"
+                        th:value="${victim.id}"></option>
             </select>
         </div>
 
