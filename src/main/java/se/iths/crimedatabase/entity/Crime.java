@@ -104,4 +104,9 @@ public class Crime {
         this.criminals = criminals;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + time + ", " + category + ", " + address + ", " + victims + ", " + criminals;
+    }
 }
