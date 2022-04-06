@@ -16,22 +16,23 @@ have different degree of access throughout the application.
 
 ## 2. Features
 
-### Done [Live features]
+### Live features
 
 * CRUD functionality for all current entities
 * Crime, Criminal, User, Victim, Category and Address entities
 * Database relations
-* Dockerfile + Container
+* Dockerfile / Docker compose
 * Custom exceptions
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/1)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/2)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
+* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
 
 ### Planned features
 
-* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
-* ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
 * MySQL database
+* Logging
 
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
 
