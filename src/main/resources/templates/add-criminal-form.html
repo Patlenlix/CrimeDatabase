@@ -12,36 +12,29 @@
         <h2>Add criminal</h2>
         <hr/>
         <form th:action="@{/saveCriminal}" th:object="${criminal}" method="POST">
-        <div class ="col-sm-8">
-            <input type="text" th:field="*{firstName}" placeholder="Enter firstname" class="form-control col-4 mb-4"/>
-            <input class="form-control col-4 mb-4" placeholder="Enter lastname" th:field="*{lastName}" type="text"/>
-        </div>
-        <div class ="col-sm-8">
-            <label for="criminal-birth-date">Date of birth:</label>
-            <input type="date" th:field="${criminal.dateOfBirth}"/>
-        </div>
-
-        <label class="col-form-label col-sm-4">Address: </label>
-             <div class ="col-sm-8">
-                <select th:field="*{address}" class="form-control">
-                <option th:value="0" selected></option>
-                <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.city}">
-                </option>
-                </select>
+            <div class="col-sm-8">
+                <input type="text" th:field="*{firstName}" placeholder="Enter firstname"
+                       class="form-control col-4 mb-4"/>
+                <input class="form-control col-4 mb-4" placeholder="Enter lastname" th:field="*{lastName}" type="text"/>
+            </div>
+            <div class="col-sm-8">
+                <label for="criminal-birth-date">Date of birth:</label>
+                <input type="date" th:field="${criminal.dateOfBirth}"/>
             </div>
 
-        <label class="col-form-label col-sm-4">Crimes: </label>
-              <div class ="col-sm-8">
-                  <select class="form-control col-4 mb-4" th:field="*{crimes}">
-                      <option th:value="0" selected></option>
-                      <option th:each="crime: ${listCrimes}" th:text="${crime.name}" th:value="${crime.id}">
-                      </option>
-                  </select>
-             </div>
-           <div class ="col-sm-8">
-             <button class="btn btn-primary" type="submit" >Save</button>'
-           </div>
-          <input type="hidden" th:field="*{id}"/>
+            <label class="col-form-label col-sm-4">Address: </label>
+            <div class="col-sm-8">
+                <select class="form-control col-4 mb-4" th:field="*{address}">
+                    <option th:value="0" selected></option>
+                    <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.city}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-8">
+                <button class="btn btn-primary" type="submit">Save</button>
+                '
+            </div>
+            <input type="hidden" th:field="*{id}"/>
         </form>
     </div>
 </body>
