@@ -3,8 +3,13 @@ package se.iths.crimedatabase.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import se.iths.crimedatabase.entity.Address;
+import se.iths.crimedatabase.entity.Category;
 import se.iths.crimedatabase.entity.Crime;
+import se.iths.crimedatabase.entity.Criminal;
 import se.iths.crimedatabase.service.AddressService;
 import se.iths.crimedatabase.service.CategoryService;
 import se.iths.crimedatabase.service.CrimeService;
@@ -34,6 +39,26 @@ public class CrimeThymeleafController {
         Iterable<Crime> allCrimes = crimeService.findAll();
         mav.addObject("crimes", allCrimes);
         return mav;
+    }
+
+    @GetMapping("/addCrimeForm")
+    public ModelAndView addCrimeForm() {
+        ModelAndView mav = new ModelAndView("add-crime-form");
+        Iterable<Category> listCategories = categoryService.findAll();
+        Iterable<Address> listAddresses = addressService.findAll();
+        Iterable<Criminal> listCriminals = criminalService.findAll();
+        Crime newCrime = new Crime();
+        mav.addObject("crime", newCrime);
+        mav.addObject("listCategories", listCategories);
+        mav.addObject("listAddresses", listAddresses);
+        mav.addObject("listCriminals", listCriminals);
+        return mav;
+    }
+
+    @PostMapping("/saveCrime")
+    public String saveCrime(@ModelAttribute Crime crime) {
+        crimeService.create(crime);
+        return "redirect:/crimes";
     }
     
 
