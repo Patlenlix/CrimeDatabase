@@ -102,7 +102,7 @@ public class Crime {
 
     @Override
     public String toString() {
-        return name + ", " + time + ", " + category + ", " + address + ", " + victims + ", " + criminals;
+        return name + ", " + time + ", " + category + ", " + address;
     }
 
 }
