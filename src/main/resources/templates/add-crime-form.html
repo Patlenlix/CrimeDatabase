@@ -17,6 +17,7 @@
         <div class="col-sm-8">
             <select class="form-control" th:field="*{category}">
                 <th:block th:each="category: ${listCategories}">
+                    <option selected th:value="0"></option>
                     <option th:text="${category.name}" th:value="${category.id}">
                 </th:block>
             </select>
