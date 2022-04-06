@@ -32,7 +32,7 @@
                         <td th:text="${crime.address}"></td>
                         <td th:text="${crime.victims}"></td>
                         <td th:text="${crime.criminals}"></td>
-                        <td th:text="${crime.time}"></td>
+                        <td th:text="${#temporals.format(crime.time, 'yyyy-MM-dd HH:mm')}"></td>
                         <td>
                             <a th:href="@{/crimeUpdateForm(id=${crime.id})}" class="btn btn-info">Update</a>
                             <a th:href="@{/deleteCrime(id=${crime.id})}" class="btn btn-danger ml-2">Delete</a>
