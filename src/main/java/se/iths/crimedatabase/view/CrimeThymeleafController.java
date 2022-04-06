@@ -7,14 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import se.iths.crimedatabase.entity.Address;
-import se.iths.crimedatabase.entity.Category;
-import se.iths.crimedatabase.entity.Crime;
-import se.iths.crimedatabase.entity.Criminal;
-import se.iths.crimedatabase.service.AddressService;
-import se.iths.crimedatabase.service.CategoryService;
-import se.iths.crimedatabase.service.CrimeService;
-import se.iths.crimedatabase.service.CriminalService;
+import se.iths.crimedatabase.entity.*;
+import se.iths.crimedatabase.service.*;
 
 @Controller
 public class CrimeThymeleafController {
@@ -23,14 +17,15 @@ public class CrimeThymeleafController {
     private final CategoryService categoryService;
     private final AddressService addressService;
     private final CriminalService criminalService;
-
+    private final VictimService victimService;
 
     @Autowired
-    public CrimeThymeleafController(CrimeService service, CategoryService categoryService, AddressService addressService, CriminalService criminalService) {
-        this.crimeService = service;
+    public CrimeThymeleafController(CrimeService crimeService, CategoryService categoryService, AddressService addressService, CriminalService criminalService, VictimService victimService) {
+        this.crimeService = crimeService;
         this.categoryService = categoryService;
         this.addressService = addressService;
         this.criminalService = criminalService;
+        this.victimService = victimService;
     }
 
 
@@ -48,8 +43,10 @@ public class CrimeThymeleafController {
         Iterable<Category> listCategories = categoryService.findAll();
         Iterable<Address> listAddresses = addressService.findAll();
         Iterable<Criminal> listCriminals = criminalService.findAll();
+        Iterable<Victim> listVictims = victimService.findAll();
         Crime newCrime = new Crime();
         mav.addObject("crime", newCrime);
+        mav.addObject("listVictims", listVictims);
         mav.addObject("listCategories", listCategories);
         mav.addObject("listAddresses", listAddresses);
         mav.addObject("listCriminals", listCriminals);
@@ -69,7 +66,9 @@ public class CrimeThymeleafController {
         Iterable<Category> listCategories = categoryService.findAll();
         Iterable<Address> listAddresses = addressService.findAll();
         Iterable<Criminal> listCriminals = criminalService.findAll();
+        Iterable<Victim> listVictims = victimService.findAll();
         mav.addObject("crime", crime);
+        mav.addObject("listVictims", listVictims);
         mav.addObject("listCategories", listCategories);
         mav.addObject("listAddresses", listAddresses);
         mav.addObject("listCriminals", listCriminals);
