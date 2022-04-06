@@ -1,6 +1,5 @@
 package se.iths.crimedatabase.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,8 +19,7 @@ public class VictimThymeleafController {
     private final VictimService victimService;
     private final CrimeService crimeService;
     private final AddressService addressService;
-
-    @Autowired
+    
     public VictimThymeleafController(VictimService victimService, CrimeService crimeService, AddressService addressService) {
         this.victimService = victimService;
         this.crimeService = crimeService;
