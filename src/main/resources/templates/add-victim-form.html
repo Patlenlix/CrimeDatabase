@@ -8,39 +8,31 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h2>Add victim</h2>
-        <form th:action="@{/saveVictim}" th:object="${victim}" method="POST">
-         <div class ="col-sm-8">
+<div class="container">
+    <h2>Add victim</h2>
+    <form method="POST" th:action="@{/saveVictim}" th:object="${victim}">
+        <div class="col-sm-8">
             <input type="text" th:field="*{firstName}" placeholder="Enter firstname" class="form-control col-4 mb-4"/>
-            <input type="text" th:field="*{LastName}" placeholder="Enter lastname" class="form-control col-4 mb-4"/>
-         </div>
-            <div>
-              <label class="col-form-label col-sm-4">
-              <label for="victim-birth-date">Date of birth:</label>
-              <input type="date" th:field="${victim.dateOfBirth}"/>
-             </div>
-            <label class="col-form-label col-sm-4">Crimes: </label>
-              <div class ="col-sm-8">
-                <select th:field="*{crimes}" class="form-control">
-                <option th:value="0" selected></option>
-                <option th:each="crime: ${listCrimes}" th:value="${crime.id}" th:text="${crime.name}">
-               </option>
-               </select>
-             </div>
-            <label class="col-form-label col-sm-4">Address: </label>
-                 <div class ="col-sm-8">
-                        <select th:field="*{address}" class="form-control">
-                        <option th:value="0" selected></option>
-                        <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.city}">
-                        </option>
-                        </select>
-                 </div>
-              <div class ="col-sm-8">
-                <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-          <input type="hidden" th:field="*{id}"/>
-        </form>
-    </div>
+            <input class="form-control col-4 mb-4" placeholder="Enter lastname" th:field="*{lastName}" type="text"/>
+        </div>
+        <div>
+            <label class="col-form-label col-sm-4">
+                <label for="victim-birth-date">Date of birth:</label>
+                <input th:field="${victim.dateOfBirth}" type="date"/>
+        </div>
+        <label class="col-form-label col-sm-4">Address: </label>
+        <div class="col-sm-8">
+            <select class="form-control col-4 mb-4" th:field="*{address}">
+                <option selected th:value="0"></option>
+                <option th:each="address: ${listAddresses}" th:text="${address.city}" th:value="${address.id}">
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-8">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
+    </form>
+</div>
 </body>
 </html>
