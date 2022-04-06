@@ -58,6 +58,10 @@ public class VictimThymeleafController {
     public ModelAndView showVictimUpdateForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("add-victim-form");
         Victim victim = victimService.findById(id).orElseThrow();
+        Iterable<Crime> listCrimes = crimeService.findAll();
+        Iterable<Address> listAddresses = addressService.findAll();
+        mav.addObject("listAddresses", listAddresses);
+        mav.addObject("listCrimes", listCrimes);
         mav.addObject("victim", victim);
         return mav;
     }
