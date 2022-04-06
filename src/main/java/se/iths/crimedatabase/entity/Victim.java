@@ -83,6 +83,6 @@ public class Victim {
 
     @Override
     public String toString() {
-        return firstName + ", " + lastName + ", " + dateOfBirth + ", " + address + ", " + crimes;
+        return firstName + " " + lastName;
     }
 }

@@ -24,13 +24,13 @@
             </thead>
                 <tbody>
                     <tr th:each="address: ${addresses}">
-                        <td th:text="${address.city}"></td>
-                        <td th:text="${address.zipCode}"></td>
                         <td th:text="${address.streetAddress}"></td>
+                        <td th:text="${address.zipCode}"></td>
+                        <td th:text="${address.city}"></td>
                         <td>
                             <a th:href="@{/addressesUpdateForm(id=${address.id})}" class="btn btn-info">Update</a>
                             <a th:href="@{/deleteAddress(id=${address.id})}" class="btn btn-danger ml-2">Delete</a>
-                         </td>
+                        </td>
                     </tr>
                 </tbody>
         </table>

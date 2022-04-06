@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Show categories </title>
+    <title>Show crimes </title>
     <link rel="stylesheet"
           type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.css"/>
     <link rel="stylesheet"
@@ -11,32 +11,33 @@
 </head>
     <body>
         <div class="container">
-            <h2>Show criminals</h2>
+            <h2>Show crimes</h2>
                 <hr/>
-                    <a th:href="@{/addCriminalForm}"class="btn btn-primary mb-2"> Add a new criminal</a>
+                    <a th:href="@{/addCrimeForm}"class="btn btn-primary mb-2"> Add a new crime</a>
                 <table class="table table-bordered table-striped" id="category-table">
             <thead>
                 <tr>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Date of birth</th>
+                    <th>Name</th>
+                    <th>Category</th>
                     <th>Location</th>
-                    <th>Crimes involved in</th>
-                    <th>Actions</th>
+                    <th>Time</th>
+                    <th>Criminals</th>
+                    <th>Victims</th>
                 </tr>
             </thead>
                 <tbody>
-                    <tr th:each="criminal: ${criminals}">
-                        <td th:text="${criminal.firstName}"></td>
-                        <td th:text="${criminal.lastName}"></td>
-                        <td th:text="${criminal.dateOfBirth}"></td>
-                        <td th:text="${criminal.address}"></td>
-                        <td th:text="${criminal.crimes}"></td>
-                        <td>
-                            <a th:href="@{/criminalUpdateForm(id=${criminal.id})}" class="btn btn-info">Update</a>
-                            <a th:href="@{/deleteCriminal(id=${criminal.id})}" class="btn btn-danger ml-2">Delete</a>
-                         </td>
-                    </tr>
+                <tr th:each="crime: ${crimes}">
+                    <td th:text="${crime.name}"></td>
+                    <td th:text="${crime.category}"></td>
+                    <td th:text="${crime.address}"></td>
+                    <td th:text="${#temporals.format(crime.time, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${crime.criminals}"></td>
+                    <td th:text="${crime.victims}"></td>
+                    <td>
+                        <a th:href="@{/crimeUpdateForm(id=${crime.id})}" class="btn btn-info">Update</a>
+                        <a th:href="@{/deleteCrime(id=${crime.id})}" class="btn btn-danger ml-2">Delete</a>
+                    </td>
+                </tr>
                 </tbody>
         </table>
     </div>
