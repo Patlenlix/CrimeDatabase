@@ -32,10 +32,10 @@
 
         <label class="col-form-label col-sm-4">Crimes: </label>
               <div class ="col-sm-8">
-                  <select th:field="*{crimes}" class="form-control">
-                  <option th:value="0" selected></option>
-                  <option th:each="crime: ${listCrimes}" th:value="${crime.id}" th:text="${crime.name}">
-                  </option>
+                  <select class="form-control col-4 mb-4" th:field="*{crimes}">
+                      <option th:value="0" selected></option>
+                      <option th:each="crime: ${listCrimes}" th:text="${crime.name}" th:value="${crime.id}">
+                      </option>
                   </select>
              </div>
 

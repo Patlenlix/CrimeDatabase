@@ -1,59 +1,61 @@
 <!DOCTYPE html>
- <html lang="en" xmlns:th="http://www.thymeleaf.org">
-   <head>
-            <title>Crimes </title>
-            <link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous">
-   </head>
-   <body>
-      <div class="container">
-         <h2>Add crime</h2>
-           <form th:action="@{/saveCrime}" th:object="${crime}" method="POST">
-               <input type="text" th:field="*{name}" placeholder="Enter name" class="form-control col-4 mb-4"/>
-                   <label class="col-form-label col-sm-4">Category: </label>
-                       <div class ="col-sm-8">
-                           <select th:field="*{category}" class="form-control">
-                           <th:block th:each="category: ${listCategories}">
-                           <option th:text="${category.name}" th:value="${category.id}">
-                           </th:block>
-                           </select>
-                       </div>
-
-                   <label class="col-form-label col-sm-4">Address: </label>
-                        <div class ="col-sm-8">
-                            <select th:field="*{address}" class="form-control">
-                            <option th:value="0" selected></option>
-                            <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.city}" >
-                            </option>
-                            </select>
-                        </div>
-
-                   <label class="col-form-label col-sm-4">Criminals: </label>
-                         <div class ="col-sm-8">
-                             <select th:field="*{criminals}" class="form-control">
-                             <option th:value="0" selected></option>
-                             <option th:each="criminal: ${listCriminals}" th:value="${criminal.id}" th:text="${criminal.firstName}">
-                             </option>
-                             </select>
-                         </div>
-
-                   <label class="col-form-label col-sm-4">Victims: </label>
-                         <div class ="col-sm-8">
-                            <select th:field="*{victims}" class="form-control">
-                            <option th:value="0" selected></option>
-                            <option th:each="victim: ${listVictims}" th:value="${victim.id}" th:text="${victim.firstName}">
-                            </option>
-                            </select>
-                         </div>
-
-                           <label for="criminal-time">Time:</label>
-                           <input type="datetime-local" th:field="${crime.time}"/>
-                       <button class="btn btn-primary" type="submit" >Save</button>
-                   </div>
-               </div>
-           </form>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crimes </title>
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Add crime</h2>
+    <hr/>
+    <form method="POST" th:action="@{/saveCrime}" th:object="${crime}">
+        <input class="form-control col-4 mb-4" placeholder="Enter name" th:field="*{name}" type="text"/>
+        <label class="col-form-label col-sm-4">Category: </label>
+        <div class="col-sm-8">
+            <select class="form-control" th:field="*{category}">
+                <th:block th:each="category: ${listCategories}">
+                    <option th:text="${category.name}" th:value="${category.id}">
+                </th:block>
+            </select>
         </div>
-    </body>
+
+        <label class="col-form-label col-sm-4">Address: </label>
+        <div class="col-sm-8">
+            <select class="form-control" th:field="*{address}">
+                <option selected th:value="0"></option>
+                <option th:each="address: ${listAddresses}" th:text="${address.city}" th:value="${address.id}"></option>
+            </select>
+        </div>
+
+        <label class="col-form-label col-sm-4">Criminals: </label>
+        <div class="col-sm-8">
+            <select class="form-control" th:field="*{criminals}">
+                <option selected th:value="0"></option>
+                <option th:each="criminal: ${listCriminals}" th:text="${criminal.firstName}"
+                        th:value="${criminal.id}"></option>
+            </select>
+        </div>
+
+        <label class="col-form-label col-sm-4">Victims: </label>
+        <div class="col-sm-8">
+            <select class="form-control" th:field="*{victims}">
+                <option selected th:value="0"></option>
+                <option th:each="victim: ${listVictims}" th:text="${victim.firstName}" th:value="${victim.id}"></option>
+            </select>
+        </div>
+
+        <label class="col-form-label col-sm-4">Time: </label>
+        <div class="col-sm-8">
+            <input class="form-control col-4 mb-4" th:field="${crime.time}" type="datetime-local"/>
+        </div>
+
+        <div class="col-sm-8">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+</body>
 </html>

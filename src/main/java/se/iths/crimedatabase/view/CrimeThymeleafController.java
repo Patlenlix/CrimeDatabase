@@ -69,10 +69,10 @@ public class CrimeThymeleafController {
         Iterable<Category> listCategories = categoryService.findAll();
         Iterable<Address> listAddresses = addressService.findAll();
         Iterable<Criminal> listCriminals = criminalService.findAll();
+        mav.addObject("crime", crime);
         mav.addObject("listCategories", listCategories);
         mav.addObject("listAddresses", listAddresses);
         mav.addObject("listCriminals", listCriminals);
-        mav.addObject("crime", crime);
         return mav;
     }
 
