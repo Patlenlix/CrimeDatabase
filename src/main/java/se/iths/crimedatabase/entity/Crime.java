@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -102,7 +103,8 @@ public class Crime {
 
     @Override
     public String toString() {
-        return name + ", " + time + ", " + category + ", " + address + ", " + victims + ", " + criminals;
+        return name + ", " +
+                time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }
