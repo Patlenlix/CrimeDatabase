@@ -1,12 +1,10 @@
 package se.iths.crimedatabase.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.context.annotation.Bean;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -107,8 +105,4 @@ public class Crime {
         return name + ", " + time + ", " + category + ", " + address + ", " + victims + ", " + criminals;
     }
 
-    @Bean
-    public DateTimeFormatter dateTimeFormatter() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    }
 }
