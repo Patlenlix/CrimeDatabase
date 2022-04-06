@@ -57,7 +57,11 @@ public class CriminalsThymeleafController {
     @GetMapping("/criminalUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("add-criminal-form");
+        Iterable<Crime> listCrimes = crimeService.findAll();
+        Iterable<Address> listAddresses = addressService.findAll();
         Criminal criminal = service.findById(id).orElseThrow();
+        mav.addObject("listAddresses", listAddresses);
+        mav.addObject("listCrimes", listCrimes);
         mav.addObject("criminal", criminal);
         return mav;
     }
