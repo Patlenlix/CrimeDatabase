@@ -3,10 +3,11 @@
 <title>Categories</title>
 <head th:replace="fragments :: header_fragment"/>
 <body>
+<div th:replace="fragments :: menu_fragment"/>
 <div class="container">
     <h2>Show categories</h2>
     <hr/>
-    <a th:href="@{/addCategoryForm}" class="btn btn-primary mb-2"> Add a new category</a>
+    <a class="btn btn-primary mb-2" th:href="@{/addCategoryForm}">Add a new category</a>
     <table class="table table-bordered table-striped" id="category-table">
         <thead>
         <tr>

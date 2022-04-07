@@ -13,17 +13,19 @@
     <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
         <div class="border border-secondary p-3 rounded">
             <p>Login to access the crime database</p>
-                <p>
-                    <input type="username" name="username" class="form-control" placeholder="Enter username" required autofocus/>
-                </p>
+            <p>
+                <input autofocus class="form-control" name="username" placeholder="Enter username" required
+                       type="username"/>
+            </p>
 
-                <p>
-                     <input type="password" name="password" class="form-control" placeholder="Enter password" required />
-                </p>
+            <p>
+                <input class="form-control" name="password" placeholder="Enter password" required type="password"/>
+            </p>
 
-                <p>
-                    <input type="submit" value="Login" class="btn btn-primary"/>
-                </p>
-        </form>
-    </body>
+            <p>
+                <input class="btn btn-primary" type="submit" value="Login"/>
+            </p>
+        </div>
+    </form>
+</body>
 </html>

@@ -3,10 +3,11 @@
 <title>Criminals</title>
 <head th:replace="fragments :: header_fragment"/>
 <body>
+<div th:replace="fragments :: menu_fragment"/>
 <div class="container">
     <h2>Show criminals</h2>
     <hr/>
-    <a th:href="@{/addCriminalForm}" class="btn btn-primary mb-2"> Add a new criminal</a>
+    <a class="btn btn-primary mb-2" th:href="@{/addCriminalForm}">Add a new criminal</a>
     <table class="table table-bordered table-striped" id="category-table">
         <thead>
         <tr>

@@ -3,10 +3,11 @@
     <title>Victims</title>
     <head th:replace="fragments :: header_fragment"/>
     <body>
+    <div th:replace="fragments :: menu_fragment"/>
     <div class="container">
         <h2>Show victims</h2>
         <hr/>
-        <a th:href="@{/addVictimForm}" class="btn btn-primary mb-2"> Add a new victim</a>
+        <a class="btn btn-primary mb-2" th:href="@{/addVictimForm}">Add a new victim</a>
         <table class="table table-bordered table-striped" id="category-table">
             <thead>
             <tr>
