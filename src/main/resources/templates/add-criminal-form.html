@@ -26,13 +26,13 @@
             <div class="col-sm-8">
                 <select class="form-control col-4 mb-4" th:field="*{address}">
                     <option th:value="0" selected></option>
-                    <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.city}">
+                    <option th:each="address: ${listAddresses}" th:value="${address.id}" th:text="${address.streetAddress + ', '
+                    + address.zipCode + ', ' + address.city}">
                     </option>
                 </select>
             </div>
             <div class="col-sm-8">
                 <button class="btn btn-primary" type="submit">Save</button>
-                '
             </div>
             <input type="hidden" th:field="*{id}"/>
         </form>

@@ -24,7 +24,8 @@
         <div class="col-sm-8">
             <select class="form-control col-4 mb-4" th:field="*{address}">
                 <option selected th:value="0"></option>
-                <option th:each="address: ${listAddresses}" th:text="${address.city}" th:value="${address.id}">
+                <option th:each="address: ${listAddresses}" th:text="${address.streetAddress + ', ' + address.zipCode +
+                  ', ' + address.city}" th:value="${address.id}">
                 </option>
             </select>
         </div>
