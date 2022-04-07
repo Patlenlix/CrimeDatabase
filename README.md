@@ -5,8 +5,11 @@
 
 ## Java Enterprise | ITHS | JU21
 
-A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL database. Different roles
-have different degree of access throughout the application.
+A Spring Boot application handling crimes, criminals and victims which is stored in a H2 database. The application both
+contains an API with endpoints for CRUD operations, which are secured with http basic auth (all demand that you are an
+Admin user). Theses can be accessed from other programs, e.g. insomnia. It also contains a frontend using Thymeleaf,
+which is secured with form based auth. In this case different roles have different degree of access throughout the
+application.
 
 ## 1. E/R diagram
 
