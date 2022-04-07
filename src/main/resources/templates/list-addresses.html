@@ -10,11 +10,12 @@
     <a class="btn btn-primary mb-2" th:href="@{/addAddressesForm}">Add a new address</a>
     <table class="table table-bordered table-striped" id="address-table">
         <thead>
-        <tr>
-            <th>city</th>
-            <th>zipCode</th>
-                    <th>streetAddress</th>
-                </tr>
+          <tr>
+              <th>Street Address</th>
+              <th>Zipcode</th>
+              <th>City</th>
+              <th>Actions</th>
+          </tr>
             </thead>
                 <tbody>
                     <tr th:each="address: ${addresses}">
