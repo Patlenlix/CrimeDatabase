@@ -27,9 +27,9 @@ public class AddressThymeleafController {
         return mav;
     }
 
-    @GetMapping("/addAddressesForm")
+    @GetMapping("/addAddressForm")
     public ModelAndView addAddressesForm() {
-        ModelAndView mav = new ModelAndView("add-addresses-form");
+        ModelAndView mav = new ModelAndView("add-address-form");
         Address address = new Address();
         mav.addObject("address", address);
         return mav;
@@ -43,7 +43,7 @@ public class AddressThymeleafController {
 
     @GetMapping("/addressesUpdateForm")
     public ModelAndView showAddressesUpdateForm(@RequestParam Long id) {
-        ModelAndView mav = new ModelAndView("add-addresses-form");
+        ModelAndView mav = new ModelAndView("add-address-form");
         Address address = service.findById(id).orElseThrow();
         mav.addObject("address", address);
         return mav;
