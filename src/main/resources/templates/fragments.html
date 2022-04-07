@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Fragments</title>
 <head th:fragment="header_fragment">
     <meta charset="UTF-8">
     <link href="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.css"
@@ -10,6 +11,43 @@
           rel="stylesheet">
 </head>
 <body>
+<div th:fragment="menu_fragment">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">Crime Database</a>
+            <button aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation" class="navbar-toggler"
+                    data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/crimes}">Crimes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/criminals}">Criminals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/victims}">Victims</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/addresses}">Addresses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/users}">Users</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 
 </body>
 </html>
