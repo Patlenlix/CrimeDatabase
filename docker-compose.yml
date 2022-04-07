@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   backend:
-    container_name: crimedb
     build: .
+    container_name: crimedb
     ports:
       - "8080:8080"
     volumes:
