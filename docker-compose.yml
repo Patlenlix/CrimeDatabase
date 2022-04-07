@@ -6,6 +6,8 @@ services:
     build: .
     ports:
       - "8080:8080"
+    volumes:
+      - ./:/src
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/crime
@@ -29,8 +31,14 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=crime
+
+volumes:
+  db:
+    driver: local
