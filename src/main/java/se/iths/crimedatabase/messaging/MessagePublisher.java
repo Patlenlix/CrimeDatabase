@@ -17,7 +17,7 @@ public class MessagePublisher {
         this.template = template;
     }
 
-    @PostMapping("/publish")
+    @PostMapping("api/publish")
     public String publishMessage(@RequestBody CustomMessage message) {
         message.setMessageID(UUID.randomUUID().toString());
         message.setMessageDate(new Date());
