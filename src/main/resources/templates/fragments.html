@@ -27,20 +27,55 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/categories}">Categories</a>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           id="categoriesDropdown" role="button">
+                            Categories
+                        </a>
+                        <ul aria-labelledby="categoriesDropdown" class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/categories}">Show Categories</a></li>
+                            <li><a class="dropdown-item" th:href="@{/addCategoryForm}">Add Category</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/crimes}">Crimes</a>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           id="crimesDropdown" role="button">
+                            Crimes
+                        </a>
+                        <ul aria-labelledby="crimesDropdown" class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/crimes}">Show Crimes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/addCrimeForm}">Add Crime</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/criminals}">Criminals</a>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           id="criminalsDropdown" role="button">
+                            Criminals
+                        </a>
+                        <ul aria-labelledby="criminalsDropdown" class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/criminals}">Show Criminals</a></li>
+                            <li><a class="dropdown-item" th:href="@{/addCriminalForm}">Add Criminal</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/victims}">Victims</a>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           id="victimsDropdown" role="button">
+                            Victims
+                        </a>
+                        <ul aria-labelledby="victimsDropdown" class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/victims}">Show Victims</a></li>
+                            <li><a class="dropdown-item" th:href="@{/addVictimForm}">Add Victim</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/addresses}">Addresses</a>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           id="addressesDropdown" role="button">
+                            Addresses
+                        </a>
+                        <ul aria-labelledby="addressesDropdown" class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/addresses}">Show Addresses</a></li>
+                            <li><a class="dropdown-item" th:href="@{/addAddressForm}">Add Address</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/users}">Users</a>
