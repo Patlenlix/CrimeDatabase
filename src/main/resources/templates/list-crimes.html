@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show crimes </title>
+    <link rel="stylesheet"
+          type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+    <body>
+        <div class="container">
+            <h2>Show crimes</h2>
+                <hr/>
+                    <a th:href="@{/addCrimeForm}"class="btn btn-primary mb-2"> Add a new crime</a>
+                <table class="table table-bordered table-striped" id="category-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Time</th>
+                    <th>Criminals</th>
+                    <th>Victims</th>
+                </tr>
+            </thead>
+                <tbody>
+                <tr th:each="crime: ${crimes}">
+                    <td th:text="${crime.name}"></td>
+                    <td th:text="${crime.category}"></td>
+                    <td th:text="${crime.address}"></td>
+                    <td th:text="${#temporals.format(crime.time, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${crime.criminals}"></td>
+                    <td th:text="${crime.victims}"></td>
+                    <td>
+                        <a th:href="@{/crimeUpdateForm(id=${crime.id})}" class="btn btn-info">Update</a>
+                        <a th:href="@{/deleteCrime(id=${crime.id})}" class="btn btn-danger ml-2">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.js"></script>
+        <script>
+        $(document).ready(function(){
+        $("#category-table").DataTable();
+        })
+        </script>
+    </body>
+</html>

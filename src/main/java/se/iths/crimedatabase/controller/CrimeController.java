@@ -12,7 +12,7 @@ import se.iths.crimedatabase.service.CrimeService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("crimes")
+@RequestMapping("api/crimes")
 public class CrimeController {
     private final CrimeService crimeService;
 
@@ -53,7 +53,7 @@ public class CrimeController {
         if (!crimes.iterator().hasNext())
             throw new NotFoundException("No crimes found");
 
-        return new ResponseEntity<>(crimes, HttpStatus.FOUND);
+        return new ResponseEntity<>(crimes, HttpStatus.OK);
     }
 
     @PutMapping("{id}")

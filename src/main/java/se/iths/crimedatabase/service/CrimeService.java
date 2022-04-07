@@ -32,11 +32,9 @@ public class CrimeService {
         return crimeRepository.findAll();
     }
 
-
     public void update(Crime crime, Long id) {
         crime.setId(id);
         crimeRepository.save(crime);
     }
-
 
 }

@@ -80,4 +80,9 @@ public class Criminal {
         this.crimes = crimes;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

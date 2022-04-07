@@ -49,4 +49,9 @@ public class Address {
         this.streetAddress = streetAddress;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return city + ", " + zipCode + ", " + streetAddress;
+    }
 }
