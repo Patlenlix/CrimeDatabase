@@ -12,7 +12,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import se.iths.crimedatabase.controller.CategoryController;
 import se.iths.crimedatabase.entity.Category;
-import se.iths.crimedatabase.security.SecurityConfig;
+import se.iths.crimedatabase.security.SecurityConfigAPI;
 import se.iths.crimedatabase.service.CategoryService;
 
 import java.util.List;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@Import({SecurityConfig.class})
+@Import({SecurityConfigAPI.class})
 @WebMvcTest(CategoryController.class)
 class CategoryWebLayerTest {
 
@@ -40,32 +40,32 @@ class CategoryWebLayerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingHttpRequestMatchingForGetAll() throws Exception {
         when(service.findAll()).thenReturn(List.of(new Category(1L, "Test")));
 
-        mockMvc.perform(get("/categories"))
+        mockMvc.perform(get("/api/categories"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingHttpRequestMatchingForGetById() throws Exception {
         Long id = 1L;
         Category category = new Category(id, "Test");
         when(service.findById(id)).thenReturn(Optional.of(category));
 
-        mockMvc.perform(get("/categories/{id}", 1L))
+        mockMvc.perform(get("/api/categories/{id}", 1L))
                 .andExpect(status().isOk());
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingInputDeserialization() throws Exception {
         Category category = new Category(1L, "Test");
         when(service.create(category)).thenReturn(category);
 
-        mockMvc.perform(post("/categories")
+        mockMvc.perform(post("/api/categories")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(category)))
                 .andExpect(status().isCreated());
@@ -73,12 +73,12 @@ class CategoryWebLayerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingBusinessLogicCalls() throws Exception {
         Category category = new Category(1L, "Test");
         when(service.create(category)).thenReturn(category);
 
-        mockMvc.perform(post("/categories")
+        mockMvc.perform(post("/api/categories")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(category)));
 
@@ -89,24 +89,24 @@ class CategoryWebLayerTest {
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingOutputSerialization() throws Exception {
         Category category = new Category(1L, "Test");
 
         when(service.findById(1L)).thenReturn(Optional.of(category));
 
-        mockMvc.perform(get("/categories/{id}", 1L))
+        mockMvc.perform(get("/api/categories/{id}", 1L))
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("Test"));
     }
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void verifyingExceptionHandling() throws Exception {
         Category category = new Category(1L, "");
         when(service.create(category)).thenReturn(category);
 
-        mockMvc.perform(post("/categories")
+        mockMvc.perform(post("/api/categories")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(category)))
                 .andExpect(status().isBadRequest());
