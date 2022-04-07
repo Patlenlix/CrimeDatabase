@@ -5,11 +5,11 @@
 
 ## Java Enterprise | ITHS | JU21
 
-A Spring Boot application handling crimes, criminals and victims which is stored in a H2 database. The application both
-contains an API with endpoints for CRUD operations, which are secured with http basic auth (all demand that you are an
-Admin user). Theses can be accessed from other programs, e.g. insomnia. It also contains a frontend using Thymeleaf,
-which is secured with form based auth. In this case different roles have different degree of access throughout the
-application.
+A Spring Boot application handling crimes, criminals and victims which is stored in a MySQL persistent database. The
+application both contains an API with endpoints for CRUD operations, which are secured with http basic auth (all demand
+that you are an Admin user). Theses can be accessed from other programs, e.g. insomnia. It also contains a frontend
+using Thymeleaf, which is secured with form based auth. In this case different roles have different degree of access
+throughout the application.
 
 ## 1. E/R diagram
 
@@ -31,10 +31,10 @@ application.
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/5)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/3)
 * ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/Patlenlix/CrimeDatabase/4)
+* MySQL locally persistent database
 
 ### Planned features
 
-* MySQL database
 * Logging
 
 #### Check out the [ROADMAP](https://github.com/orgs/Patlenlix/projects/1/views/1)
@@ -70,13 +70,18 @@ version: '3.8'
 
 services:
   backend:
+    container_name: crimedb
     image: ghcr.io/patlenlix/crimedatabase:latest
     ports:
       - "8080:8080"
+    volumes:
+      - ./:/src
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/crime
     depends_on:
       - rabbitmq
+      - mysql
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -85,6 +90,26 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+      
+  mysql:
+    image: mysql:latest
+    cap_add:
+      - SYS_NICE
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=crime
+
+volumes:
+  db:
+    driver: local
 ```
 
 **RUN APPLICATION: ALTERNATIVE 2**
