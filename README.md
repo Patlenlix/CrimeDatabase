@@ -94,18 +94,25 @@ services:
 
 ### How to Interact with the application (both Alternatives)
 
-1. Use `Insomnia` to run the endpoints below
-    - Use `Basic Auth`:
-        - **Admin**:
-            - Username: admin
-            - Password: admin123
-        - **User**:
-            - Username: user
-            - Password: user123
-2. To access `RabbitMQ` console to manage messaging service
-    - Go to: `http://localhost:15672`
-        - Username: guest
-        - Password: guest
+1. Use `Insomnia` to run the REST endpoints below
+    - Uses `Basic Auth`
+2. Use a `browser` to run the Thymeleaf endpoints below
+    - Uses `Form Based Auth`
+
+##### There are two register users when you start the application:
+
+- **Admin**:
+    - Username: admin
+    - Password: admin123
+- **User**:
+    - Username: user
+    - Password: user123
+
+To access `RabbitMQ` console to manage messaging service
+
+- Go to: `http://localhost:15672`
+    - Username: guest
+    - Password: guest
 
 ---
 
