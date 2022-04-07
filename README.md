@@ -109,9 +109,9 @@ services:
 
 ---
 
-## 4. Endpoints
+## 4. Endpoints for REST API
 
-All URLs for our API start with `http://localhost:8080/api`
+All URLs for our REST API start with `http://localhost:8080/api`
 
 #### Category:
 
@@ -223,3 +223,95 @@ POST needs a Body with a JSON object. Example of body for POST:
   "message": "Sample message"
 }
 ```
+
+---
+
+## 4. Endpoints for Thymeleaf
+
+All URLs for our Thymeleaf application start with `http://localhost:8080`
+
+#### Login page
+
+If you are not logged in, and you try to access any of the endpoint that are secured with form based aut, you will be
+redirected to the login-page. This page is open for everyone.
+
+| HTTP-verb | URL    | Authorization           | Info                                                                                                                                                                                                                                                         |
+|-----------|--------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GET       | /login | None                    | If you have entered valid credentials you will be logged in and redirected to the home page, <br/> otherwise you will stay on the page and be told that you have bad credentials. <br/> If you are already logged in you will be redirected to the homepage. |
+
+#### Home page
+
+The application has a home-page from which you can navigate to all other features of tha application.
+
+| HTTP-verb | URL | Authorization           | Info                                                |
+|-----------|-----|-------------------------|-----------------------------------------------------|
+| GET       |     | All authenticated users | This will display the home-page of the application. |
+
+#### Handling Categories
+
+The application has a page for displaying exiting categories and one for adding/updating them.
+
+| HTTP-verb | URL                           | Authorization           | Info                                                                       |
+|-----------|-------------------------------|-------------------------|----------------------------------------------------------------------------|
+| GET       | /categories                   | All authenticated users | This will displays all existing categories.                                |
+| GET       | /addCategoryForm              | All authenticated users | This will displays a form where you can add a category                     |
+| POST      | /saveCategory                 | All authenticated users | This will save a category witch has been added/updated                     |
+| GET       | /categoriesUpdateForm?id={id} | All authenticated users | This will displays a form where you can update the category with id = {id} |
+| GET       | /deleteCategory?id={id}       | All authenticated users | This will delete the category with id = {id}                               |
+
+#### Handling Crimes
+
+The application has a page for displaying exiting crimes and one for adding/updating them.
+
+| HTTP-verb | URL                      | Authorization                       | Info                                                                    |
+|-----------|--------------------------|-------------------------------------|-------------------------------------------------------------------------|
+| GET       | /crimes                  | Authenticated users with role ADMIN | This will displays all existing crimes.                                 |
+| GET       | /addCrimeForm            | Authenticated users with role ADMIN | This will displays a form where you can add a crime                     |
+| POST      | /saveCrime               | Authenticated users with role ADMIN | This will save a crime witch has been added/updated                     |
+| GET       | /crimeUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the crime with id = {id} |
+| GET       | /deleteCrime?id={id}     | Authenticated users with role ADMIN | This will delete the crime with id = {id}                               |
+
+#### Handling Criminals
+
+The application has a page for displaying exiting criminals and one for adding/updating them.
+
+| HTTP-verb | URL                         | Authorization                       | Info                                                                       |
+|-----------|-----------------------------|-------------------------------------|----------------------------------------------------------------------------|
+| GET       | /criminals                  | Authenticated users with role ADMIN | This will displays all existing criminals.                                 |
+| GET       | /addCriminalForm            | Authenticated users with role ADMIN | This will displays a form where you can add a criminal                     |
+| POST      | /saveCriminal               | Authenticated users with role ADMIN | This will save a criminal witch has been added/updated                     |
+| GET       | /criminalUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the criminal with id = {id} |
+| GET       | /deleteCriminal?id={id}     | Authenticated users with role ADMIN | This will delete the criminal with id = {id}                               |
+
+#### Handling Victims
+
+The application has a page for displaying exiting victims and one for adding/updating them.
+
+| HTTP-verb | URL                       | Authorization                       | Info                                                                     |
+|-----------|---------------------------|-------------------------------------|--------------------------------------------------------------------------|
+| GET       | /victims                  | Authenticated users with role ADMIN | This will displays all existing victims.                                 |
+| GET       | /addVictimForm            | Authenticated users with role ADMIN | This will displays a form where you can add a victim                     |
+| POST      | /saveVictim               | Authenticated users with role ADMIN | This will save a victim witch has been added/updated                     |
+| GET       | /victimUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the victim with id = {id} |
+| GET       | /deleteVictim?id={id}     | Authenticated users with role ADMIN | This will delete the victim with id = {id}                               |
+
+#### Handling Addresses
+
+The application has a page for displaying exiting addresses and one for adding/updating them.
+
+| HTTP-verb | URL                          | Authorization           | Info                                                                      |
+|-----------|------------------------------|-------------------------|---------------------------------------------------------------------------|
+| GET       | /addresses                   | All authenticated users | This will displays all existing addresses.                                |
+| GET       | /addAddressesForm            | All authenticated users | This will displays a form where you can add an address                    |
+| POST      | /saveAddress                 | All authenticated users | This will save a address witch has been added/updated                     |
+| GET       | /addressesUpdateForm?id={id} | All authenticated users | This will displays a form where you can update the address with id = {id} |
+| GET       | /deleteAddress?id={id}       | All authenticated users | This will delete the address with id = {id}                               |
+
+#### Handling Users
+
+The application has a page for displaying exiting users. Users can (at the moment) not be modified from the application.
+
+| HTTP-verb | URL                       | Authorization                       | Info                                                                     |
+|-----------|---------------------------|-------------------------------------|--------------------------------------------------------------------------|
+| GET       | /users                    | Authenticated users with role ADMIN | This will displays all existing users.                                   |
+
