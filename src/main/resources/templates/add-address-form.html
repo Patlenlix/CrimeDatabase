@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Add Address</title>
+<head th:replace="fragments :: header_fragment"/>
+<body>
+<div th:replace="fragments :: menu_fragment"/>
+<div class="container">
+    <h2>Add address</h2>
+    <hr/>
+    <form method="POST" th:action="@{/saveAddress}" th:object="${address}">
+        <input class="form-control col-4 mb-4" placeholder="Enter city" th:field="*{city}" type="text"/>
+        <input class="form-control col-4 mb-4" placeholder="Enter zipcode" th:field="*{zipCode}" type="text"/>
+        <input class="form-control col-4 mb-4" placeholder="Enter streetAddress" th:field="*{streetAddress}"
+               type="text"/>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <input th:field="*{id}" type="hidden"/>
+    </form>
+</div>
+</body>
+</html>
