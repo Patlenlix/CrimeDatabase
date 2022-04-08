@@ -28,6 +28,14 @@ public class Crime {
     @ManyToMany
     private Set<Criminal> criminals = new HashSet<>();
 
+    public Crime() {
+    }
+
+    public Crime(String name, LocalDateTime time) {
+        this.name = name;
+        this.time = time;
+    }
+
     public void addVictim(Victim victim) {
         victims.add(victim);
         victim.getCrimes().add(this);

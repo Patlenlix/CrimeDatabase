@@ -7,12 +7,22 @@ import javax.persistence.Id;
 
 @Entity
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
     private String zipCode;
     private String streetAddress;
+
+    public Address() {
+    }
+
+    public Address(String city, String zipCode, String streetAddress) {
+        this.city = city;
+        this.zipCode = zipCode;
+        this.streetAddress = streetAddress;
+    }
 
     public Long getId() {
         return id;
