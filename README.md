@@ -9,7 +9,8 @@ A Spring Boot application handling crimes, criminals and victims which is stored
 application both contains an API with endpoints for CRUD operations, which are secured with http basic auth (all demand
 that you are an Admin user). Theses can be accessed from other programs, e.g. insomnia. It also contains a frontend
 using Thymeleaf, which is secured with form based auth. In this case different roles have different degree of access
-throughout the application.
+throughout the application. Users with role USER can view all information (except which users exist), but they can not
+edit any information. Users with role ADMIN can have full access.
 
 ## 1. E/R diagram
 
@@ -283,13 +284,13 @@ The application has a home-page from which you can navigate to all other feature
 
 The application has a page for displaying exiting categories and one for adding/updating them.
 
-| HTTP-verb | URL                           | Authorization           | Info                                                                       |
-|-----------|-------------------------------|-------------------------|----------------------------------------------------------------------------|
-| GET       | /categories                   | All authenticated users | This will displays all existing categories.                                |
-| GET       | /addCategoryForm              | All authenticated users | This will displays a form where you can add a category                     |
-| POST      | /saveCategory                 | All authenticated users | This will save a category witch has been added/updated                     |
-| GET       | /categoriesUpdateForm?id={id} | All authenticated users | This will displays a form where you can update the category with id = {id} |
-| GET       | /deleteCategory?id={id}       | All authenticated users | This will delete the category with id = {id}                               |
+| HTTP-verb | URL                           | Authorization                       | Info                                                                       |
+|-----------|-------------------------------|-------------------------------------|----------------------------------------------------------------------------|
+| GET       | /categories                   | All authenticated users             | This will displays all existing categories.                                |
+| GET       | /addCategoryForm              | Authenticated users with role ADMIN | This will displays a form where you can add a category                     |
+| POST      | /saveCategory                 | Authenticated users with role ADMIN | This will save a category witch has been added/updated                     |
+| GET       | /categoriesUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the category with id = {id} |
+| GET       | /deleteCategory?id={id}       | Authenticated users with role ADMIN | This will delete the category with id = {id}                               |
 
 #### Handling Crimes
 
@@ -297,7 +298,7 @@ The application has a page for displaying exiting crimes and one for adding/upda
 
 | HTTP-verb | URL                      | Authorization                       | Info                                                                    |
 |-----------|--------------------------|-------------------------------------|-------------------------------------------------------------------------|
-| GET       | /crimes                  | Authenticated users with role ADMIN | This will displays all existing crimes.                                 |
+| GET       | /crimes                  | All authenticated users             | This will displays all existing crimes.                                 |
 | GET       | /addCrimeForm            | Authenticated users with role ADMIN | This will displays a form where you can add a crime                     |
 | POST      | /saveCrime               | Authenticated users with role ADMIN | This will save a crime witch has been added/updated                     |
 | GET       | /crimeUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the crime with id = {id} |
@@ -309,7 +310,7 @@ The application has a page for displaying exiting criminals and one for adding/u
 
 | HTTP-verb | URL                         | Authorization                       | Info                                                                       |
 |-----------|-----------------------------|-------------------------------------|----------------------------------------------------------------------------|
-| GET       | /criminals                  | Authenticated users with role ADMIN | This will displays all existing criminals.                                 |
+| GET       | /criminals                  | All authenticated users             | This will displays all existing criminals.                                 |
 | GET       | /addCriminalForm            | Authenticated users with role ADMIN | This will displays a form where you can add a criminal                     |
 | POST      | /saveCriminal               | Authenticated users with role ADMIN | This will save a criminal witch has been added/updated                     |
 | GET       | /criminalUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the criminal with id = {id} |
@@ -321,7 +322,7 @@ The application has a page for displaying exiting victims and one for adding/upd
 
 | HTTP-verb | URL                       | Authorization                       | Info                                                                     |
 |-----------|---------------------------|-------------------------------------|--------------------------------------------------------------------------|
-| GET       | /victims                  | Authenticated users with role ADMIN | This will displays all existing victims.                                 |
+| GET       | /victims                  | All authenticated users             | This will displays all existing victims.                                 |
 | GET       | /addVictimForm            | Authenticated users with role ADMIN | This will displays a form where you can add a victim                     |
 | POST      | /saveVictim               | Authenticated users with role ADMIN | This will save a victim witch has been added/updated                     |
 | GET       | /victimUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the victim with id = {id} |
@@ -331,13 +332,13 @@ The application has a page for displaying exiting victims and one for adding/upd
 
 The application has a page for displaying exiting addresses and one for adding/updating them.
 
-| HTTP-verb | URL                          | Authorization           | Info                                                                      |
-|-----------|------------------------------|-------------------------|---------------------------------------------------------------------------|
-| GET       | /addresses                   | All authenticated users | This will displays all existing addresses.                                |
-| GET       | /addAddressesForm            | All authenticated users | This will displays a form where you can add an address                    |
-| POST      | /saveAddress                 | All authenticated users | This will save a address witch has been added/updated                     |
-| GET       | /addressesUpdateForm?id={id} | All authenticated users | This will displays a form where you can update the address with id = {id} |
-| GET       | /deleteAddress?id={id}       | All authenticated users | This will delete the address with id = {id}                               |
+| HTTP-verb | URL                          | Authorization                       | Info                                                                      |
+|-----------|------------------------------|-------------------------------------|---------------------------------------------------------------------------|
+| GET       | /addresses                   | All authenticated users             | This will displays all existing addresses.                                |
+| GET       | /addAddressesForm            | Authenticated users with role ADMIN | This will displays a form where you can add an address                    |
+| POST      | /saveAddress                 | Authenticated users with role ADMIN | This will save a address witch has been added/updated                     |
+| GET       | /addressesUpdateForm?id={id} | Authenticated users with role ADMIN | This will displays a form where you can update the address with id = {id} |
+| GET       | /deleteAddress?id={id}       | Authenticated users with role ADMIN | This will delete the address with id = {id}                               |
 
 #### Handling Users
 
